@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+
+.box-shadow {
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+}
+
+select .control {
+	width: 100;
+	max-width: 100%;
+}
+
+.removeArrows::-webkit-outer-spin-button, .removeArrows::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.removeArrows {
+	-moz-appearance:textfield;
+}
