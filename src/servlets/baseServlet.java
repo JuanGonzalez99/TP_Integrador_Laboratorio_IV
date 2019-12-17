@@ -4,14 +4,20 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+@SuppressWarnings("serial")
 public abstract class baseServlet extends HttpServlet {	
-	private static final long serialVersionUID = 1L;
+	
+	protected static final String mainPath = "/Juan_Gonzalez_TP_Integrador1";
+	protected static final String loginPath = "Views/Account/Login.jsp";
+	protected static final String indexAdminPath = "Views/Admin/Index.jsp";
+	protected static final String indexProfesorPath = "Views/Profesor/Index.jsp";
 	
 	protected Map<String, Object> jsonObj;
 	
@@ -63,8 +69,54 @@ public abstract class baseServlet extends HttpServlet {
 	
 	protected final void redirect(HttpServletRequest request, HttpServletResponse response, String location) {
 		response.setHeader("Location", request.getContextPath() + "/" + location);
-//		response.setHeader("Cache-Control", "no-cache"); // Para que no redireccione siempre
-//		response.setStatus(302);
+		response.setStatus(302);
 	}
 
+	protected final void mustBeLogged(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		try {
+			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
+			
+			if (tipoUsuario == null || tipoUsuario <= 0) {
+				redirect(request, response, loginPath);
+			}
+			
+		} catch(Exception e) {
+			redirect(request, response, loginPath);
+		}		
+	}
+	
+	protected final void mustBeAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		try {
+			mustBeLogged(request, response);
+			
+			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
+			
+			if (tipoUsuario != 1) {
+				redirect(request, response, indexProfesorPath);
+			}
+
+		} catch (Exception e) {
+			redirect(request, response, loginPath);
+		}
+	}
+	
+	protected final void mustBeProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		try {
+			mustBeLogged(request, response);
+			
+			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
+			
+			if (tipoUsuario != 2) {
+				redirect(request, response, indexAdminPath);
+			}
+	
+		} catch (Exception e) {
+			redirect(request, response, loginPath);
+		}
+	}
+	
+	protected final void cerrarSesion(HttpServletRequest request) {
+		request.getSession().invalidate();
+	}
+	
 }

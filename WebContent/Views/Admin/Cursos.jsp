@@ -110,12 +110,12 @@
 		
 		triggerTableLoader(true);
 		
-		$.ajax({
-			type: "GET",
-			url: "../../servletCurso",
-			success: fillTable,
-			error: ajaxErrorShow
-		});
+// 		$.ajax({
+// 			type: "GET",
+// 			url: "../../servletCurso",
+// 			success: fillTable,
+// 			error: ajaxErrorShow
+// 		});
 		
 	});
 	

@@ -3,6 +3,18 @@
 <%@attribute name="userName" required="true"%>
 <%@attribute name="title" required="true"%>
 
+<% 
+	try {
+		if (
+// 				request.getDispatcherType().toString().equals("REQUEST") ||
+			request.getSession().getAttribute("email").equals(null))
+		throw new Exception();
+	} catch (Exception e) {
+		response.setHeader("Location", request.getContextPath() + "/LoginServlet");
+		response.setStatus(302);
+	} 
+%>
+
 <t:genericpage title="${ title }">
     <jsp:attribute name="header">
 
@@ -126,9 +138,9 @@
 		          </span>
 		        </a>
 		        <ul class="treeview-menu">
-		          <li><a href="../Alumno/Alumnos.jsp"><i class="fa fa-circle-o"></i>Alumnos</a></li>
-		          <li><a href="../Profesor/Profesores.jsp"><i class="fa fa-circle-o"></i>Profesores</a></li>
-		          <li><a href="../Curso/Cursos.jsp"><i class="fa fa-circle-o"></i>Cursos</a></li>
+		          <li><a href="../../admin/Alumnos"><i class="fa fa-circle-o"></i>Alumnos</a></li>
+		          <li><a href="../../admin/Profesores"><i class="fa fa-circle-o"></i>Profesores</a></li>
+		          <li><a href="../../admin/Cursos"><i class="fa fa-circle-o"></i>Cursos</a></li>
 <!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li> -->
 <!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li> -->
 <!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li> -->

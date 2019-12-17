@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,8 @@ public class LoginServlet extends baseServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/Views/Account/Login.jsp").forward(request, response);
+//		request.getRequestDispatcher("/Views/Account/Login.jsp").forward(request, response);
+		redirect(request, response, loginPath);
 	}
 
 
@@ -37,12 +37,12 @@ public class LoginServlet extends baseServlet {
 	            request.getSession().setAttribute("nombre", usuario.getNombre());
 	            request.getSession().setAttribute("apellido", usuario.getApellido());
 	            
-	            String location = "/Views/Account/Login.jsp";
+	            String location = loginPath;
 	            Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
 	            if (tipoUsuario == 1) {
-	            	location = "/Views/Home/Index.jsp";
+	            	location = indexAdminPath;
 	            } else if (tipoUsuario == 2) {
-	            	location = "/Views/Profesor/CursosProfesor.jsp";
+	            	location = indexProfesorPath;
 	            }
 	            request.setAttribute("Loggear", true);
 	            redirect(request, response, location);
