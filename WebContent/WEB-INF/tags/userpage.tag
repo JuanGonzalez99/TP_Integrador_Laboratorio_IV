@@ -1,16 +1,15 @@
 <%@tag description="User Page template" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@attribute name="userName" required="true"%>
+<%-- <%@attribute name="userName" required="true"%> --%>
 <%@attribute name="title" required="true"%>
 
 <% 
 	try {
-		if (
-// 				request.getDispatcherType().toString().equals("REQUEST") ||
-			request.getSession().getAttribute("email").equals(null))
-		throw new Exception();
+		
+		if (!session.getAttribute("idTipoUsuario").equals(1))
+			throw new Exception();
 	} catch (Exception e) {
-		response.setHeader("Location", request.getContextPath() + "/LoginServlet");
+		response.setHeader("Location", request.getContextPath() + "/Login");
 		response.setStatus(302);
 	} 
 %>
@@ -138,9 +137,9 @@
 		          </span>
 		        </a>
 		        <ul class="treeview-menu">
-		          <li><a href="../../admin/Alumnos"><i class="fa fa-circle-o"></i>Alumnos</a></li>
-		          <li><a href="../../admin/Profesores"><i class="fa fa-circle-o"></i>Profesores</a></li>
-		          <li><a href="../../admin/Cursos"><i class="fa fa-circle-o"></i>Cursos</a></li>
+		          <li><a href="/Juan_Gonzalez_TP_Integrador1/Admin/Alumnos"><i class="fa fa-circle-o"></i>Alumnos</a></li>
+		          <li><a href="/Juan_Gonzalez_TP_Integrador1/Admin/Profesores"><i class="fa fa-circle-o"></i>Profesores</a></li>
+		          <li><a href="/Juan_Gonzalez_TP_Integrador1/Admin/Cursos"><i class="fa fa-circle-o"></i>Cursos</a></li>
 <!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li> -->
 <!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li> -->
 <!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li> -->

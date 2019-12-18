@@ -34,6 +34,7 @@
         var errorMsg = xhr.status + ': ' + xhr.statusText;
         console.log('Error - ' + errorMsg);
         MessageBox.showError('Ha ocurrido un error inesperado');
+        debugger;
 	}
 	
 	function clearSearch() {
@@ -211,44 +212,7 @@
 				triggerTableLoader(false);
 			}, 50);
 
-//			var ths = oTable.children()[0].children[0].children;
-//
-//			$.each(ths, function () {
-//				var th = $(this);
-//				if (th.hasClass('nota')) {
-//					var columnNo = th.index();
-//					var tds = oTable.find("tr td:nth-child(" + (columnNo+1) + ")");
-//					
-//					$.each(tds, function () {
-//
-//						var nRow = $(this).parent('tr')[0];
-//						var aData = oTable.fnGetData(nRow);
-//
-//						this.innerHTML = '';
-//						
-//						if (th.hasClass('estado')) {
-//							var td = $(this);
-//							var selectEst = $('<select lang="es" style="width: 100px;">');
-//						    estados.forEach(function(elem) {
-//						    	selectEst.append($('<option>')
-//									.val(elem.id)
-//									.text(elem.text));
-//						    });
-//						    var idEstado = aData[columnNo-1];
-////						    selectEst.ready(function () { selectEst.select2(); });
-//						    selectEst.val(idEstado).change();
-//						    td.append(selectEst);
-//						} else {
-//							this.innerHTML = '<input type="number" min="1" max="10" value="'+ aData[columnNo] +'" />';
-//						}
-//						
-//					});
-//			    }
-//			}); // fin .each()
-//			
-//			oTable.fnDraw();
-
-		}); // fin btnCalificate
+		});
 		
 		$('#btnSave').click(function (e) {
 			e.preventDefault();
@@ -366,6 +330,7 @@
 	var selectLoc = $('<select lang="es" style="width: 150px;">');
     var selectProf = $('<select lang="es" style="width: 150px;">');
     var selectMat = $('<select lang="es" style="width: 150px;">');
+    var selectAlum = $('<select lang="es" style="width: 150px;">');
 
     var selectSem = $('<select lang="es">');
     semestres.forEach(function(elem) {
@@ -425,7 +390,7 @@
 	    $.each(jqTds, function(i, element) {
 	    	var td = $(element);
 	    	var th = td.closest('table').find('th').eq(td.index());
-	    	debugger;
+	    	
 	    	if (!th.hasClass('not-editable')) {
 	    		
  	    		element.innerHTML = '';
@@ -454,7 +419,18 @@
 	    			    select.append(option).trigger('change');
 
 	    			} else if (th.hasClass('alumno')) {
-	    				select = selectAlum.clone();
+	    				select = selectAlum;
+	    				options["ajax"] = {
+	    					url: '../../servletAlumno',
+	    					type: 'GET',
+    						dataType: 'json',
+    						processResults: function (data) {
+    					        return {
+    					            results: $.map(data, function (item) { return { id: item.id, text: item.apellido + ", " + item.nombre + " - " + item.id } })
+    					        };
+    					    },
+    						error: ajaxError
+	    				}
 	    			} else if (th.hasClass('profesor')) {
 	    				select = selectProf;
 	    				options["ajax"] = {
@@ -463,7 +439,7 @@
     						dataType: 'json',
     						processResults: function (data) {
     					        return {
-    					            results: $.map(data, function (item) { return { id: item.id, text: item.apellido + ", " + item.nombre } })
+    					            results: $.map(data, function (item) { return { id: item.id, text: item.apellido + ", " + item.nombre + " - " + item.id } })
     					        };
     					    },
     						error: ajaxError

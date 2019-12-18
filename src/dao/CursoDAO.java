@@ -125,6 +125,7 @@ public class CursoDAO implements IDao<Curso> {
 		try 
 		{
 			statement = conexion.getSQLConexion().prepareStatement(getallbyprofesorid);
+			statement.setInt(1, idProfesor);
 			resultSet = statement.executeQuery();
 			while(resultSet.next())
 			{

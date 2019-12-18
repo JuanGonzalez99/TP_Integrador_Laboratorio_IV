@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:userpage userName="Juan Gonzalez" title="Inicio">
+<t:teacherpage title="Inicio">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -91,4 +91,4 @@
     </section>
 
 
-</t:userpage>
+</t:teacherpage>

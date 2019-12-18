@@ -1,7 +1,16 @@
 <%@tag description="User Page template" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@attribute name="userName" required="true"%>
 <%@attribute name="title" required="true"%>
+
+<% 
+	try {
+		if (!session.getAttribute("idTipoUsuario").equals(2))
+			throw new Exception();
+	} catch (Exception e) {
+		response.setHeader("Location", request.getContextPath() + "/Login");
+		response.setStatus(302);
+	}
+%>
 
 <t:genericpage title="${ title }">
     <jsp:attribute name="header">

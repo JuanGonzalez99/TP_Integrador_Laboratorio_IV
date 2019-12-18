@@ -13,7 +13,7 @@
 	request.setAttribute("idCurso", idCurso);
 %>
 
-<t:teacherpage userName="Juan Gonzalez" title="Alumnos por curso">
+<t:teacherpage title="Alumnos por curso">
 
 	<input type="hidden" id="idCurso" value="${ idCurso }">
 

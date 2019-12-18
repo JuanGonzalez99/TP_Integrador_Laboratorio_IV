@@ -11,14 +11,11 @@ import dao.UsuarioDAO;
 import dominio.Usuario;
 
 
-@WebServlet("/LoginServlet")
+@SuppressWarnings("serial")
+@WebServlet("/Login")
 public class LoginServlet extends baseServlet {
-	private static final long serialVersionUID = 1L;
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		request.getRequestDispatcher("/Views/Account/Login.jsp").forward(request, response);
 		redirect(request, response, loginPath);
 	}
 
@@ -34,23 +31,25 @@ public class LoginServlet extends baseServlet {
 			if (usuario != null) {
 	            request.getSession().setAttribute("email", email);
 	            request.getSession().setAttribute("idTipoUsuario", usuario.getIdTipoUsuario());
-	            request.getSession().setAttribute("nombre", usuario.getNombre());
-	            request.getSession().setAttribute("apellido", usuario.getApellido());
+//	            request.getSession().setAttribute("nombre", usuario.getNombre());
+//	            request.getSession().setAttribute("apellido", usuario.getApellido());
+	            
+	            String username = email.split("\\@")[0];
+	            if (!usuario.getApellido().isEmpty() && !usuario.getNombre().isEmpty()) {
+	            	username = usuario.getNombre() + " " + usuario.getApellido();
+	            }
+	            request.getSession().setAttribute("userName", username);
 	            
 	            String location = loginPath;
-	            Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
+	            int tipoUsuario = (int) usuario.getIdTipoUsuario();
 	            if (tipoUsuario == 1) {
-	            	location = indexAdminPath;
+	            	location = "/Admin/" + "Index";
 	            } else if (tipoUsuario == 2) {
-	            	location = indexProfesorPath;
+	            	location = "/Profesor/" + "Cursos";
 	            }
-	            request.setAttribute("Loggear", true);
 	            redirect(request, response, location);
 			} else {
-				request.setAttribute("Loggear", false);
-				request.setAttribute("error", "Usuario o contraseña incorrectos");
-//				RequestDispatcher rd = request.getRequestDispatcher("/Views/Account/Login.jsp");
-//				rd.forward(request, response);
+				response.sendRedirect(mainPath + loginPath+"?loginError=1");
 			}
 		}
 	}

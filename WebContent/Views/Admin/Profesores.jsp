@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:userpage userName="Juan Gonzalez" title="Profesores">
+<t:userpage title="Profesores">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">

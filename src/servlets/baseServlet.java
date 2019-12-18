@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import helpers.NotAuthorizedException;
+
 @SuppressWarnings("serial")
 public abstract class baseServlet extends HttpServlet {	
 	
 	protected static final String mainPath = "/Juan_Gonzalez_TP_Integrador1";
-	protected static final String loginPath = "Views/Account/Login.jsp";
-	protected static final String indexAdminPath = "Views/Admin/Index.jsp";
-	protected static final String indexProfesorPath = "Views/Profesor/Index.jsp";
+	protected static final String loginPath = "/Views/Account/Login.jsp";
+	protected static final String adminPath = "/Views/Admin/";
+	protected static final String teacherPath = "/Views/Profesor/";
 	
 	protected Map<String, Object> jsonObj;
 	
@@ -68,8 +71,18 @@ public abstract class baseServlet extends HttpServlet {
 	
 	
 	protected final void redirect(HttpServletRequest request, HttpServletResponse response, String location) {
-		response.setHeader("Location", request.getContextPath() + "/" + location);
+		response.setHeader("Location", request.getContextPath() + location);
 		response.setStatus(302);
+	}	
+
+	protected final String getAction(HttpServletRequest request) {
+		String baseURL = request.getRequestURL().toString();
+		int start = baseURL.lastIndexOf(mainPath) + mainPath.length();
+		String cleanPath = request.getRequestURL().substring(start);
+//		req.setAttribute("currentLink", cleanPath);
+		cleanPath = cleanPath.substring(cleanPath.lastIndexOf("/") + 1);
+
+		return cleanPath;
 	}
 
 	protected final void mustBeLogged(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -77,11 +90,11 @@ public abstract class baseServlet extends HttpServlet {
 			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
 			
 			if (tipoUsuario == null || tipoUsuario <= 0) {
-				redirect(request, response, loginPath);
+				redirect(request, response, mainPath + loginPath);
 			}
 			
 		} catch(Exception e) {
-			redirect(request, response, loginPath);
+			redirect(request, response, mainPath + loginPath);
 		}		
 	}
 	
@@ -92,11 +105,11 @@ public abstract class baseServlet extends HttpServlet {
 			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
 			
 			if (tipoUsuario != 1) {
-				redirect(request, response, indexProfesorPath);
+				redirect(request, response, mainPath + teacherPath + "Index.jsp");
 			}
 
 		} catch (Exception e) {
-			redirect(request, response, loginPath);
+			redirect(request, response, mainPath + loginPath);
 		}
 	}
 	
@@ -107,16 +120,28 @@ public abstract class baseServlet extends HttpServlet {
 			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
 			
 			if (tipoUsuario != 2) {
-				redirect(request, response, indexAdminPath);
+				redirect(request, response, mainPath + adminPath + "Index.jsp");
 			}
 	
 		} catch (Exception e) {
-			redirect(request, response, loginPath);
+			redirect(request, response, mainPath + loginPath);
 		}
 	}
 	
 	protected final void cerrarSesion(HttpServletRequest request) {
 		request.getSession().invalidate();
+	}
+
+
+	@SuppressWarnings("rawtypes")
+	protected final void manejarFuncion(HttpServletRequest req, HttpServletResponse resp, Callable func) {
+		try {	
+			func.call();
+		}  catch (NullPointerException | NotAuthorizedException e) {
+			redirect(req, resp, mainPath + loginPath);
+		} catch (Exception e) {
+			resp.setStatus(402); // Unprocessable entity
+		}
 	}
 	
 }

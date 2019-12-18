@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:userpage userName="Juan Gonzalez" title="Cursos">
+<t:userpage title="Cursos">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -46,48 +46,6 @@
 		                    </tr>
 		                </thead>
 						<tbody>
-							<!--<tr>
-								<td>Laboratorio de Computación IV</td>
-								<td>0</td>
-								<td>Segundo</td>
-								<td>0</td>
-								<td>2019</td>
-								<td>Tamara Herrera</td>
-								<td>0</td>
-								<td><a target="_blank" href="http://localhost:8180/Juan_Gonzalez_TP_Integrador1/Views/Curso/AlumnosCurso.jsp" class="btn btn-link alumnos">Lista de Alumnos</a></td>
-								<td>
-									<button data-toggle="tooltip" data-container="body" title="Editar" class="btn btn-sm btn-flat btn-success edit"><i class="fa fa-pencil"></i></button>
-									<button data-toggle="tooltip" data-container="body" title="Eliminar" class="btn btn-sm btn-flat btn-danger delete"><i class="fa fa-trash-o"></i></button>
-								</td>
-							</tr>
-							<tr>
-								<td>Programación III</td>
-								<td>0</td>
-								<td>Primero</td>
-								<td>0</td>
-								<td>2019</td>
-								<td>Maximiliano Sar Fernandez</td>
-								<td>0</td>
-								<td><a target="_blank" href="http://localhost:8180/Juan_Gonzalez_TP_Integrador1/Views/Curso/AlumnosCurso.jsp" class="btn btn-link alumnos">Lista de Alumnos</a></td>
-								<td>
-									<button data-toggle="tooltip" data-container="body" title="Editar" class="btn btn-sm btn-flat btn-success edit"><i class="fa fa-pencil"></i></button>
-									<button data-toggle="tooltip" data-container="body" title="Eliminar" class="btn btn-sm btn-flat btn-danger delete"><i class="fa fa-trash-o"></i></button>
-								</td>
-							</tr>
-							<tr>
-								<td>Programación II</td>
-								<td>0</td>
-								<td>Segundo</td>
-								<td>0</td>
-								<td>2018</td>
-								<td>Daniel Kloster</td>
-								<td>0</td>
-								<td><a target="_blank" href="http://localhost:8180/Juan_Gonzalez_TP_Integrador1/Views/Curso/AlumnosCurso.jsp" class="btn btn-link alumnos">Lista de Alumnos</a></td>
-								<td>
-									<button data-toggle="tooltip" data-container="body" title="Editar" class="btn btn-sm btn-flat btn-success edit"><i class="fa fa-pencil"></i></button>
-									<button data-toggle="tooltip" data-container="body" title="Eliminar" class="btn btn-sm btn-flat btn-danger delete"><i class="fa fa-trash-o"></i></button>
-								</td>
-							</tr>-->
 						</tbody>
 		            </table>
 		        </div>
@@ -110,12 +68,12 @@
 		
 		triggerTableLoader(true);
 		
-// 		$.ajax({
-// 			type: "GET",
-// 			url: "../../servletCurso",
-// 			success: fillTable,
-// 			error: ajaxErrorShow
-// 		});
+		$.ajax({
+			type: "GET",
+			url: "../../servletCurso",
+			success: fillTable,
+			error: ajaxErrorShow
+		});
 		
 	});
 	

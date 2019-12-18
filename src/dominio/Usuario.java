@@ -6,6 +6,7 @@ public class Usuario {
 	private String email;
 	private String contrasenia;
 	private int idTipoUsuario;
+	private Integer idProfesor;
 	private String nombre;
 	private String apellido;
 	private boolean deshabilitado;
@@ -34,6 +35,12 @@ public class Usuario {
 	}
 	public void setIdTipoUsuario(int idTipoUsuario) {
 		this.idTipoUsuario = idTipoUsuario;
+	}
+	public Integer getIdProfesor() {
+		return idProfesor;
+	}
+	public void setIdProfesor(Integer idProfesor) {
+		this.idProfesor = idProfesor;
 	}
 	public String getNombre() {
 		return nombre;

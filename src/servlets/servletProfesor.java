@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dao.ProfesorDAO;
+import dao.UsuarioDAO;
 import dominio.Profesor;
+import dominio.Usuario;
 
 @WebServlet("/servletProfesor")
 public class servletProfesor extends baseServlet {
@@ -48,8 +50,19 @@ public class servletProfesor extends baseServlet {
 			}
 			else {
 		        if (profesor.getId() == 0) {
+		        	UsuarioDAO daoUsuario = new UsuarioDAO();
+		        	
 		        	int id = dao.Insert(profesor);
-		        	setJson(id > 0, id);
+		        	Usuario usuario = new Usuario();
+		        	usuario.setEmail(profesor.getEmail());
+		        	usuario.setContrasenia(String.valueOf(profesor.getDni()));
+		        	usuario.setIdTipoUsuario(2);
+		        	usuario.setIdProfesor(id);
+		        	usuario.setNombre(profesor.getNombre());
+		        	usuario.setApellido(profesor.getApellido());
+		        	int idUsuario = daoUsuario.Insert(usuario);
+		        	
+		        	setJson(id > 0 && idUsuario > 0, id);
 		        } else {
 		        	setJson(dao.Update(profesor));
 		        }

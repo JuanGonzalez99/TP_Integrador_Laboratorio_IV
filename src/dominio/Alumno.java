@@ -126,7 +126,7 @@ public class Alumno {
 	
 	@Override
 	public String toString() {
-		return apellido + ", " + nombre + " - " + id;
+		return apellido + ", " + nombre;// + " - " + id;
 	}
 	
 }

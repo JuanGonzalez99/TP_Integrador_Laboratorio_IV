@@ -16,13 +16,9 @@ import dominio.Alumno;
 /**
  * Servlet implementation class someservlet
  */
+@SuppressWarnings("serial")
 @WebServlet("/servletAlumno")
 public class servletAlumno extends baseServlet {
-	private static final long serialVersionUID = 1L;
-
-    public servletAlumno() {
-        super();
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AlumnoDAO dao = new AlumnoDAO();

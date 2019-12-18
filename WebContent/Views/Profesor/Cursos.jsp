@@ -12,7 +12,7 @@
 	request.setAttribute("profesor", profesor);
 %>
 
-<t:teacherpage userName="Juan Gonzalez" title="Cursos por profesor">
+<t:teacherpage title="Cursos por profesor">
 
 	<input type="hidden" id="idProfesor" value="${ idProfesor }" />
 
@@ -77,11 +77,8 @@
 <script src="../../Content/js/datatable.js"></script>
 
 <script>
-
 	var idProfesor = $('#idProfesor').val();
-
 	$(function () {
-
 		$.ajax({
 			url: '../../servletCurso',
 			type: 'GET',
@@ -93,7 +90,6 @@
 	});
 	
 	function fillTable(list) {
-
 		if(typeof list == "string" || list[0] == null) {
 			triggerTableLoader(false);
 			return;
@@ -102,21 +98,20 @@
 		var oTable = $('#datatable').dataTable();
 		
 		$.each(list, function () {
-			var idSemestre = this.idEstado;
-			var semestre = idSemestre == 1 ? "Primer semestre" : (idSemestre == 2 ? "Segundo semestre" : "");
+// 			var idSemestre = this.idEstado;
+// 			var semestre = idSemestre == 1 ? "Primer semestre" : (idSemestre == 2 ? "Segundo semestre" : "");
 			
 			data = [];
 			data.push(this.materia.nombre);
-			data.push(semestre);
+			data.push(this.semestre.descripcion);
 			data.push(this.anio);
+			data.push('<a target="_blank" href="http://localhost:8180/Juan_Gonzalez_TP_Integrador1/Views/Profesor/AlumnosCurso.jsp?idCurso='+ this.id +'" class="btn btn-link alumnos">Lista de Alumnos</a>');
 			
 			oTable.fnAddData(data);
 			
 		});
 		
 		oTable.fnDraw();
-
 		triggerTableLoader(false);
 	}
-
 </script>

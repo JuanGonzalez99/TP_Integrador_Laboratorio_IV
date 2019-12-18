@@ -12,7 +12,7 @@ import dominio.Usuario;
 public class UsuarioDAO implements IDao<Usuario>{
 
 	private static final String table_name = "usuarios";
-	private static final String insert = "INSERT INTO " + table_name + "(email, contrasenia, idTipoUsuario, nombre, apellido) VALUES (?, ?, ?, ?, ?)";
+	private static final String insert = "INSERT INTO " + table_name + "(email, contrasenia, idTipoUsuario, idProfesor, nombre, apellido) VALUES (?, MD5( ? ), ?, ?, ?, ?)";
 	private static final String getbyemailbypass = "SELECT * FROM " + table_name + " WHERE email = ? AND contrasenia = MD5( ? )";
 	
 
@@ -26,10 +26,11 @@ public class UsuarioDAO implements IDao<Usuario>{
 		{
 			statement = conexion.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, inserted.getEmail());
-			statement.setString(2, "MD5('" + inserted.getContrasenia() + "')");
+			statement.setString(2, inserted.getContrasenia());
 			statement.setInt(3, inserted.getIdTipoUsuario());
-			statement.setString(4, inserted.getNombre());
-			statement.setString(5, inserted.getApellido());
+			statement.setInt(4, inserted.getIdProfesor());
+			statement.setString(5, inserted.getNombre());
+			statement.setString(6, inserted.getApellido());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
