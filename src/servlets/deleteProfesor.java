@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import dao.AlumnoDAO;
-
+import dao.ProfesorDAO;
 
 @SuppressWarnings("serial")
-@WebServlet("/deleteAlumno")
-public class deleteAlumno extends baseServlet {
+@WebServlet("/deleteProfesor")
+public class deleteProfesor extends baseServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -23,7 +22,7 @@ public class deleteAlumno extends baseServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			AlumnoDAO dao = new AlumnoDAO();
+			ProfesorDAO dao = new ProfesorDAO();
 			int id = new Gson().fromJson(request.getReader(), int.class);
 			
 			setJson(dao.Delete(id));
@@ -32,10 +31,10 @@ public class deleteAlumno extends baseServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-			setJson(false, "Ha ocurrido un error al eliminar el alumno, intente nuevamente en unos minutos", true);
+			setJson(false, "Ha ocurrido un error al eliminar el profesor, intente nuevamente en unos minutos", true);
 
 			setResponse(response);
 		}
 	}
-
+	
 }

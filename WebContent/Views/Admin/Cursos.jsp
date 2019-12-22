@@ -65,9 +65,7 @@
 <script>
 
 	$(function () {
-		
-		triggerTableLoader(true);
-		
+
 		$.ajax({
 			type: "GET",
 			url: "../../servletCurso",
@@ -98,7 +96,7 @@
 			data.push(this.semestre.descripcion);
 			data.push(this.idProfesor);
 			data.push(profesor);
-			data.push(btnAlumnos);
+			data.push(btnAlumnos(this.id));
 			data.push(btnEdit);
 			
 			oTable.fnAddData(data);

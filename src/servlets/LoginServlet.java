@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,7 @@ public class LoginServlet extends baseServlet {
 	            }
 	            redirect(request, response, location);
 			} else {
+//				request.getRequestDispatcher(loginPath).forward(request, response);
 				response.sendRedirect(mainPath + loginPath+"?loginError=1");
 			}
 		}

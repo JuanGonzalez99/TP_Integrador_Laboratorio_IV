@@ -1,6 +1,5 @@
-<%@tag description="User Page template" pageEncoding="UTF-8"%>
+<%@tag description="Admin Page template" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%-- <%@attribute name="userName" required="true"%> --%>
 <%@attribute name="title" required="true"%>
 
 <% 
@@ -40,41 +39,38 @@
 			    <i class="fa fa-user"></i>
 			    <span class="hidden-xs">${ userName }</span>
 			  </a>
-<!-- 			  <ul class="dropdown-menu"> -->
-<!-- 			   User image  -->
-<!-- 			   <li class="user-header"> -->
+			  <ul class="dropdown-menu">
+			   <li class="user-header">
 <!-- 			     <img src="../../Content/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
 			
-<!-- 			     <p> -->
-<!-- 			       Alexander Pierce - Web Developer -->
-<!-- 			       <small>Member since Nov. 2012</small> -->
-<!-- 			     </p> -->
-<!-- 			   </li> -->
-<!-- 			   Menu Body  -->
-<!-- 			   <li class="user-body"> -->
-<!-- 			     <div class="row"> -->
-<!-- 			       <div class="col-xs-4 text-center"> -->
-<!-- 			         <a href="#">Followers</a> -->
-<!-- 			       </div> -->
-<!-- 			       <div class="col-xs-4 text-center"> -->
-<!-- 			         <a href="#">Sales</a> -->
-<!-- 			       </div> -->
-<!-- 			       <div class="col-xs-4 text-center"> -->
-<!-- 			         <a href="#">Friends</a> -->
-<!-- 			       </div> -->
-<!-- 			     </div> -->
-<!-- 			     /.row  -->
-<!-- 			   </li> -->
-<!-- 			   Menu Footer  -->
-<!-- 			    <li class="user-footer"> -->
-<!-- 			      <div class="pull-left"> -->
-<!-- 			        <a href="#" class="btn btn-default btn-flat">Profile</a> -->
-<!-- 			      </div> -->
-<!-- 			      <div class="pull-right"> -->
-<!-- 			        <a href="#" class="btn btn-default btn-flat">Sign out</a> -->
-<!-- 			      </div> -->
-<!-- 			    </li> -->
-<!-- 			  </ul> -->
+			     <p>
+			       Alexander Pierce - Web Developer
+			       <small>Member since Nov. 2012</small>
+			     </p>
+			   </li>
+			   <li class="user-body">
+			     <div class="row">
+			       <div class="col-xs-4 text-center">
+			         <a href="#">Followers</a>
+			       </div>
+			       <div class="col-xs-4 text-center">
+			         <a href="#">Sales</a>
+			       </div>
+			       <div class="col-xs-4 text-center">
+			         <a href="#">Friends</a>
+			       </div>
+			     </div>
+			     /.row 
+			   </li>
+			    <li class="user-footer">
+			      <div class="pull-left">
+			        <a href="#" class="btn btn-default btn-flat">Profile</a>
+			      </div>
+			      <div class="pull-right">
+			        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+			      </div>
+			    </li>
+			  </ul>
 			</li>
 			<!-- Control Sidebar Toggle Button -->
 <!-- 	        <li> -->

@@ -13,7 +13,7 @@ public class LocalidadDAO implements IDao<Localidad> {
 	private static final String table_name = "localidad";
 	private static final String getall = "SELECT * FROM " + table_name;
 	private static final String getbyid = "SELECT * FROM " + table_name + " WHERE id = ?";
-	private static final String getbynombre = "SELECT * FROM " + table_name + " WHERE nombre LIKE ?";
+	private static final String getbynombre = "SELECT * FROM " + table_name + " WHERE nombre LIKE ? AND provincia_id = 2";
 	
 	@Override
 	public int Insert(Localidad inserted) {

@@ -16,7 +16,9 @@
 	var btnDelete = '<button data-toggle="tooltip" data-container="body" title="Eliminar" class="btn btn-sm btn-flat btn-danger delete"><i class="fa fa-trash-o"></i></button>';
 	var btnCancel = '<button data-toggle="tooltip" data-container="body" title="Cancelar" class="btn btn-sm btn-flat btn-danger delete"><i class="fa fa-trash-o"></i></button>';
 
-	var btnAlumnos = '<button class="btn btn-link">Ver alumnos</button>';
+	function btnAlumnos(idCurso) {
+		return '<a href="http://localhost:8180/Juan_Gonzalez_TP_Integrador1/Views/Admin/AlumnosCurso.jsp?idCurso='+ idCurso +'">Ver alumnos</a>';
+	}
 	
 	function triggerTableLoader(status) {
 		if (status) {

@@ -41,7 +41,8 @@
 
 	<%
 		session.invalidate();
-		if (request.getParameter("loginError") != null) {
+		String context = request.getContextPath();
+		if (request.getAttribute("loginError") != null) {
 			String error = "Ha ocurrido un error inesperado";
 			if (request.getParameter("loginError").equals("1")) {
 				error = "Usuario o contraseña incorrectos";
@@ -56,6 +57,12 @@
 		}
 	
 	%>
+	
+	<input type="hidden" id="context" value="<%= context %>" />
+	<script>
+		var context = document.getElementById('context').value;
+		console.log(context);
+	</script>
 
 	<div class="limiter">
 		<div class="container-login100">

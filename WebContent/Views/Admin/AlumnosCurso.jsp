@@ -5,12 +5,17 @@
 
 
 <%
-	int idCurso = 1;
+try {
+	int idCurso = Integer.parseInt(request.getParameter("idCurso"));
 	CursoDAO dao = new CursoDAO();
 	Curso curso = dao.GetById(idCurso);
 
 	request.setAttribute("curso", curso);
 	request.setAttribute("idCurso", idCurso);
+} catch (Exception e) {
+	response.setHeader("Location", request.getContextPath() + "/Admin/Cursos");
+	response.setStatus(302);
+}
 %>
 
 <t:userpage title="Alumnos por curso">
