@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:userpage title="Cursos">
+<t:adminpage title="Cursos">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -57,7 +57,7 @@
     
     </section>
 
-</t:userpage>
+</t:adminpage>
 
 <script src="../../Content/js/datatable.js"></script>
 

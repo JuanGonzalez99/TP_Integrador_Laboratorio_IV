@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-<t:userpage title="Alumnos">
+<t:adminpage title="Alumnos">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -61,7 +61,7 @@
     
     </section>
 
-</t:userpage>
+</t:adminpage>
 
 <script src="../../Content/js/datatable.js"></script>
 

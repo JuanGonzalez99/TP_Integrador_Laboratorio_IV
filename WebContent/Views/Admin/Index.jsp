@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:userpage title="Inicio">
+<t:adminpage title="Inicio">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -16,8 +16,8 @@
     
     <section class="content">
     
-    
-<div class="row">
+
+	<div class="row">
 <!--         <div class="col-lg-3 col-xs-6"> -->
 <!--           small box -->
 <!--           <div class="small-box bg-aqua"> -->
@@ -91,4 +91,4 @@
     </section>
 
 
-</t:userpage>
+</t:adminpage>

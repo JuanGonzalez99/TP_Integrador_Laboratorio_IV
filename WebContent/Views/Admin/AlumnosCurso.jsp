@@ -18,7 +18,7 @@ try {
 }
 %>
 
-<t:userpage title="Alumnos por curso">
+<t:adminpage title="Alumnos por curso">
 
 	<input type="hidden" id="idCurso" value="${ idCurso }">
 
@@ -72,7 +72,7 @@ try {
     </section>
 
 
-</t:userpage>
+</t:adminpage>
 
 <script src="../../Content/js/datatable.js"></script>
 
