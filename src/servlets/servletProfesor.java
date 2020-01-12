@@ -103,6 +103,9 @@ public class servletProfesor extends baseServlet {
 		if (entidad.getTelefono() == 0) {
 			return "Debe ingresar el telefono del profesor";
 		}
+		if (new ProfesorDAO().GetCountByEmail(entidad.getEmail()) > 0) {
+			return "Ya existe un profesor con el email ingresado";
+		}
 		
 		return null;
 	}

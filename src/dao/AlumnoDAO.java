@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dominio.Alumno;
-import dominio.Profesor;
 
 public class AlumnoDAO implements IDao<Alumno> {
 

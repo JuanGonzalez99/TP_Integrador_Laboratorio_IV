@@ -20,6 +20,7 @@ public class ProfesorDAO implements IDao<Profesor> {
 	private static final String getall = "SELECT * FROM " + table_name;
 	private static final String getallenabled = "SELECT * FROM " + table_name + " WHERE deshabilitado = 0";
 	private static final String getbynombre = "SELECT * FROM " + table_name + " WHERE deshabilitado = 0 AND ( nombre LIKE ? OR apellido LIKE ? )";
+	private static final String getcountbyemail = "SELECT COUNT(*) FROM " + table_name + " WHERE deshabilitado = 0 AND email = ?";
 	private static final String getbyid = "SELECT * FROM " + table_name + " WHERE id = ?";
 
 	@Override
@@ -187,6 +188,30 @@ public class ProfesorDAO implements IDao<Profesor> {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public int GetCountByEmail(String email) {
+		int result = -1;
+
+		PreparedStatement statement;
+		ResultSet resultSet;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(getcountbyemail);
+			statement.setString(1, email);
+			resultSet = statement.executeQuery();
+			while(resultSet.next())
+			{
+				result = resultSet.getInt(1);
+			}
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}		
+		
+		return result;
 	}
 
 	@Override
