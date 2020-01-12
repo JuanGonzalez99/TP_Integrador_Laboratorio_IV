@@ -15,10 +15,10 @@ public class AdminServlet extends baseServlet {
     	manejarFuncion(request, response, () -> {
     		mustBeAdmin(request, response);
     			    	
-	    	String action = getAction(request);
-	    	String url = mainPath + adminPath + action + ".jsp";
+	    	String view = getView(request);
+	    	String path = adminPath + view + ".jsp";
 	    	
-	    	response.sendRedirect(url);
+	    	request.getRequestDispatcher(path).forward(request, response);
 	    	return null;
     	});
     }

@@ -11,7 +11,7 @@
         <small>Listado y abm</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
+        <li><a href=""${ mainPath }/Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li class="active">Alumnos</li>
       </ol>
     </section>
@@ -63,7 +63,7 @@
 
 </t:adminpage>
 
-<script src="../../Content/js/datatable.js"></script>
+<script src="${ contentPath }/js/datatable.js"></script>
 
 <script>
 
@@ -73,7 +73,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "../../servletAlumno",
+			url: mainPath + "/servletAlumno",
 			success: fillTable,
 			error: ajaxErrorShow
 		});
@@ -122,7 +122,7 @@
 		var result = -1;
 
 		$.ajax({
-			url: "../../servletAlumno",
+			url: mainPath + "/servletAlumno",
 			type: "POST",
 			contentType: "application/json",
 			data: JSON.stringify(data),
@@ -152,7 +152,7 @@
 		var result = false;
 		
 		$.ajax({
-			url: "../../deleteAlumno",
+			url: mainPath + "/deleteAlumno",
 			type: "POST",
 			contentType: "application/json",
 			data: JSON.stringify(id),

@@ -39,35 +39,34 @@
 			    <i class="fa fa-user"></i>
 			    <span class="hidden-xs">${ userName }</span>
 			  </a>
-			  <ul class="dropdown-menu">
-			   <li class="user-header">
-<!-- 			     <img src="../../Content/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
+			  <ul class="dropdown-menu" style="width: auto; min-width: auto;">
+<!-- 			   <li class="user-header"> -->
+<%-- 			     <img src="${ contentPath }/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> --%>
 			
-			     <p>
-			       Alexander Pierce - Web Developer
-			       <small>Member since Nov. 2012</small>
-			     </p>
-			   </li>
-			   <li class="user-body">
-			     <div class="row">
-			       <div class="col-xs-4 text-center">
-			         <a href="#">Followers</a>
-			       </div>
-			       <div class="col-xs-4 text-center">
-			         <a href="#">Sales</a>
-			       </div>
-			       <div class="col-xs-4 text-center">
-			         <a href="#">Friends</a>
-			       </div>
-			     </div>
-			     /.row 
-			   </li>
+<!-- 			     <p> -->
+<!-- 			       Alexander Pierce - Web Developer -->
+<!-- 			       <small>Member since Nov. 2012</small> -->
+<!-- 			     </p> -->
+<!-- 			   </li> -->
+<!-- 			   <li class="user-body"> -->
+<!-- 			     <div class="row"> -->
+<!-- 			       <div class="col-xs-4 text-center"> -->
+<!-- 			         <a href="#">Followers</a> -->
+<!-- 			       </div> -->
+<!-- 			       <div class="col-xs-4 text-center"> -->
+<!-- 			         <a href="#">Sales</a> -->
+<!-- 			       </div> -->
+<!-- 			       <div class="col-xs-4 text-center"> -->
+<!-- 			         <a href="#">Friends</a> -->
+<!-- 			       </div> -->
+<!-- 			     </div> -->
+<!-- 			   </li> -->
 			    <li class="user-footer">
-			      <div class="pull-left">
-			        <a href="#" class="btn btn-default btn-flat">Profile</a>
-			      </div>
-			      <div class="pull-right">
-			        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+<!-- 			      <div class="pull-left"> -->
+<!-- 			        <a href="#" class="btn btn-default btn-flat">Profile</a> -->
+<!-- 			      </div> -->
+			      <div class="col-md-12">
+			        <a href="${ mainPath }/Login" class="btn btn-default btn-flat">Cerrar sesión</a>
 			      </div>
 			    </li>
 			  </ul>
@@ -110,10 +109,10 @@
 <!-- 		          </span> -->
 <!-- 		        </a> -->
 <!-- 		        <ul class="treeview-menu"> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li> -->
 <!-- 		        </ul> -->
 <!-- 		      </li> -->
 <!-- 		      <li> -->
@@ -133,13 +132,13 @@
 		          </span>
 		        </a>
 		        <ul class="treeview-menu">
-		          <li><a href="/Juan_Gonzalez_TP_Integrador1/Admin/Alumnos"><i class="fa fa-circle-o"></i>Alumnos</a></li>
-		          <li><a href="/Juan_Gonzalez_TP_Integrador1/Admin/Profesores"><i class="fa fa-circle-o"></i>Profesores</a></li>
-		          <li><a href="/Juan_Gonzalez_TP_Integrador1/Admin/Cursos"><i class="fa fa-circle-o"></i>Cursos</a></li>
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li> -->
+		          <li><a href="${ mainPath }/Admin/Alumnos"><i class="fa fa-circle-o"></i>Alumnos</a></li>
+		          <li><a href="${ mainPath }/Admin/Profesores"><i class="fa fa-circle-o"></i>Profesores</a></li>
+		          <li><a href="${ mainPath }/Admin/Cursos"><i class="fa fa-circle-o"></i>Cursos</a></li>
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li> -->
 		        </ul>
 		      </li>
 <!-- 		      <li class="treeview"> -->
@@ -153,12 +152,12 @@
 <!-- 		        <ul class="treeview-menu"> -->
 <!-- 		          <li><a href="../Profesor/AlumnosProfesor.jsp"><i class="fa fa-circle-o"></i>Alumnos</a></li> -->
 <!-- 		          <li><a href="../Profesor/CursosProfesor.jsp"><i class="fa fa-circle-o"></i>Cursos</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li> -->
 <!-- 		        </ul> -->
 <!-- 		      </li> -->
 <!-- 		      <li class="treeview"> -->
@@ -182,8 +181,8 @@
 <!-- 		          </span> -->
 <!-- 		        </a> -->
 <!-- 		        <ul class="treeview-menu"> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li> -->
 <!-- 		        </ul> -->
 <!-- 		      </li> -->
 <!-- 		      <li> -->
@@ -213,15 +212,15 @@
 <!-- 		          </span> -->
 <!-- 		        </a> -->
 <!-- 		        <ul class="treeview-menu"> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li> -->
-<!-- 		          <li><a href="../../Content/AdminLTE/pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li> -->
+<!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li> -->
 <!-- 		        </ul> -->
 <!-- 		      </li> -->
 <!-- 		      <li class="treeview"> -->

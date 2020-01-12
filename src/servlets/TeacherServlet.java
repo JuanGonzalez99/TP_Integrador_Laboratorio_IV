@@ -13,12 +13,12 @@ public class TeacherServlet extends baseServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	manejarFuncion(request, response, () -> {
-    		mustBeAdmin(request, response);
-    			    	
-	    	String action = getAction(request);
-	    	String url = mainPath + teacherPath + action + ".jsp";
-	    	
-	    	response.sendRedirect(url);
+    		mustBeProfesor(request, response);
+    		
+	    	String view = getView(request);
+	    	String path = teacherPath + view + ".jsp";
+
+	    	request.getRequestDispatcher(path).forward(request, response);
 	    	return null;
     	});
     }

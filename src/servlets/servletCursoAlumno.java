@@ -19,18 +19,18 @@ public class servletCursoAlumno extends baseServlet {
 	
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	CursoAlumnoDAO dao = new CursoAlumnoDAO();
-        List<CursoAlumno> list;        
-
-    	String parameter = request.getParameter("idCurso");
-    	if (parameter != null && !parameter.trim().isEmpty()) {
-    		int idCurso = Integer.parseInt(parameter);
-    		list = dao.GetAllByCursoId(idCurso);
-    	} else {    		
-    		list = dao.GetAllEnabled();
-    	}
-        
-        setResponseJson(response, list);
+		CursoAlumnoDAO dao = new CursoAlumnoDAO();
+	    List<CursoAlumno> list;        
+	
+		String parameter = request.getParameter("idCurso");
+		if (parameter != null && !parameter.trim().isEmpty()) {
+			int idCurso = Integer.parseInt(parameter);
+			list = dao.GetAllByCursoId(idCurso);
+		} else {    		
+			list = dao.GetAllEnabled();
+		}
+	    
+	    setResponseJson(response, list);
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

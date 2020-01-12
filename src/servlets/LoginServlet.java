@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,8 @@ import dominio.Usuario;
 public class LoginServlet extends baseServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		redirect(request, response, loginPath);
+		request.getRequestDispatcher(loginPath).forward(request, response);
+//		redirect(request, response, loginPath);
 	}
 
 
@@ -32,8 +32,6 @@ public class LoginServlet extends baseServlet {
 			if (usuario != null) {
 	            request.getSession().setAttribute("email", email);
 	            request.getSession().setAttribute("idTipoUsuario", usuario.getIdTipoUsuario());
-//	            request.getSession().setAttribute("nombre", usuario.getNombre());
-//	            request.getSession().setAttribute("apellido", usuario.getApellido());
 	            
 	            String username = email.split("\\@")[0];
 	            if (!usuario.getApellido().isEmpty() && !usuario.getNombre().isEmpty()) {
@@ -46,12 +44,12 @@ public class LoginServlet extends baseServlet {
 	            if (tipoUsuario == 1) {
 	            	location = "/Admin/" + "Index";
 	            } else if (tipoUsuario == 2) {
-	            	location = "/Profesor/" + "Cursos";
+	            	location = "/Profesor/" + "Index";
 	            }
 	            redirect(request, response, location);
 			} else {
-//				request.getRequestDispatcher(loginPath).forward(request, response);
-				response.sendRedirect(mainPath + loginPath+"?loginError=1");
+				request.setAttribute("loginError", 1);
+				request.getRequestDispatcher(loginPath).forward(request, response);
 			}
 		}
 	}

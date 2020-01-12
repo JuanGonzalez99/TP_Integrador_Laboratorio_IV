@@ -23,7 +23,7 @@
 <!--         <small>Control panel</small> -->
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
+        <li><a href="${ mainPath }/Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li class="active">Cursos por profesor</li>
       </ol>
     </section>
@@ -54,16 +54,16 @@
 		                    </tr>
 		                </thead>
 						<tbody>
-							<tr>
+<!-- 						<tr>
 								<td>Laboratorio de Computacion IV</td>
 								<td>Segundo</td>
 								<td>2019</td>
-								<td><a target="_blank" href="http://localhost:8180/Juan_Gonzalez_TP_Integrador1/Views/Profesor/AlumnosProfesor.jsp" class="btn btn-link alumnos">Lista de Alumnos</a></td>
+								<td><a target="_blank" href="${ mainPath }/Profesor/AlumnosCurso" class="btn btn-link alumnos">Lista de Alumnos</a></td>
 <%-- 								<td> --%>
 <!-- 									<button data-toggle="tooltip" data-container="body" title="Editar" class="btn btn-sm btn-flat btn-success edit"><i class="fa fa-pencil"></i></button> -->
 <!-- 									<button data-toggle="tooltip" data-container="body" title="Eliminar" class="btn btn-sm btn-flat btn-danger delete"><i class="fa fa-trash-o"></i></button> -->
 <%-- 								</td> --%>
-							</tr>
+<%-- 							</tr> --%>
 						</tbody>
 		            </table>
 		        </div>
@@ -74,13 +74,14 @@
 
 </t:teacherpage>
 
-<script src="../../Content/js/datatable.js"></script>
+<script src="${ contentPath }/js/datatable.js"></script>
 
 <script>
 	var idProfesor = $('#idProfesor').val();
+	
 	$(function () {
 		$.ajax({
-			url: '../../servletCurso',
+			url: mainPath + "/servletCurso" + "?idProfesor=" + idProfesor,
 			type: 'GET',
 			data: idProfesor,
 			success: fillTable,

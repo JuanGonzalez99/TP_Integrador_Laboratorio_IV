@@ -71,61 +71,45 @@ public abstract class baseServlet extends HttpServlet {
 	
 	
 	protected final void redirect(HttpServletRequest request, HttpServletResponse response, String location) {
-		response.setHeader("Location", request.getContextPath() + location);
+		response.setHeader("Location", mainPath + location);
 		response.setStatus(302);
 	}	
 
-	protected final String getAction(HttpServletRequest request) {
+	protected final String getView(HttpServletRequest request) {
 		String baseURL = request.getRequestURL().toString();
 		int start = baseURL.lastIndexOf(mainPath) + mainPath.length();
-		String cleanPath = request.getRequestURL().substring(start);
-//		req.setAttribute("currentLink", cleanPath);
-		cleanPath = cleanPath.substring(cleanPath.lastIndexOf("/") + 1);
+		String view = request.getRequestURL().substring(start);
+		view = view.substring(view.lastIndexOf("/") + 1);
 
-		return cleanPath;
+		return view;
 	}
 
-	protected final void mustBeLogged(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		try {
-			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
-			
-			if (tipoUsuario == null || tipoUsuario <= 0) {
-				redirect(request, response, mainPath + loginPath);
-			}
-			
-		} catch(Exception e) {
-			redirect(request, response, mainPath + loginPath);
-		}		
-	}
-	
-	protected final void mustBeAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		try {
-			mustBeLogged(request, response);
-			
-			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
-			
-			if (tipoUsuario != 1) {
-				redirect(request, response, mainPath + teacherPath + "Index.jsp");
-			}
-
-		} catch (Exception e) {
-			redirect(request, response, mainPath + loginPath);
+	protected final void mustBeLogged(HttpServletRequest request, HttpServletResponse response) throws ServletException, NotAuthorizedException {
+		Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
+		
+		if (tipoUsuario == null || tipoUsuario <= 0) {
+			throw new NotAuthorizedException();
 		}
 	}
 	
-	protected final void mustBeProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		try {
-			mustBeLogged(request, response);
-			
-			Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
-			
-			if (tipoUsuario != 2) {
-				redirect(request, response, mainPath + adminPath + "Index.jsp");
-			}
-	
-		} catch (Exception e) {
-			redirect(request, response, mainPath + loginPath);
+	protected final void mustBeAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, NotAuthorizedException {
+		mustBeLogged(request, response);
+		
+		Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
+		
+		if (tipoUsuario != 1) {
+			throw new NotAuthorizedException();
 		}
+	}
+	
+	protected final void mustBeProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, NotAuthorizedException {
+		mustBeLogged(request, response);
+		
+		Integer tipoUsuario = (Integer) request.getSession().getAttribute("idTipoUsuario");
+		
+		if (tipoUsuario != 2) {
+			throw new NotAuthorizedException();
+		}	
 	}
 	
 	protected final void cerrarSesion(HttpServletRequest request) {
@@ -134,13 +118,14 @@ public abstract class baseServlet extends HttpServlet {
 
 
 	@SuppressWarnings("rawtypes")
-	protected final void manejarFuncion(HttpServletRequest req, HttpServletResponse resp, Callable func) {
-		try {	
-			func.call();
+	protected final void manejarFuncion(HttpServletRequest request, HttpServletResponse response, Callable funcion) throws ServletException, IOException {
+		try {
+			mustBeLogged(request, response);
+			funcion.call();
 		}  catch (NullPointerException | NotAuthorizedException e) {
-			redirect(req, resp, mainPath + loginPath);
+			redirect(request, response, "/Login");
 		} catch (Exception e) {
-			resp.setStatus(402); // Unprocessable entity
+			response.setStatus(402); // Unprocessable entity
 		}
 	}
 	

@@ -10,7 +10,7 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
+        <li><a href="${ mainPath }/Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li class="active">Template</li>
       </ol>
     </section>
@@ -24,4 +24,4 @@
 
 </t:adminpage>
 
-<script src="../../Content/js/datatable.js"></script>
+<script src="${ contentPath }/js/datatable.js"></script>

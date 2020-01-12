@@ -16,14 +16,9 @@ import dao.UsuarioDAO;
 import dominio.Profesor;
 import dominio.Usuario;
 
+@SuppressWarnings("serial")
 @WebServlet("/servletProfesor")
 public class servletProfesor extends baseServlet {
-	private static final long serialVersionUID = 1L;
-
-	public servletProfesor() {
-		super();
-	}
-	
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	ProfesorDAO dao = new ProfesorDAO();

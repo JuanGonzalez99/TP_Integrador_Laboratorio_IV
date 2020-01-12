@@ -23,7 +23,7 @@
         Alumnos por curso
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
+        <li><a href="${ mainPath }/Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li class="active">Alumnos por curso</li>
       </ol>
     </section>
@@ -76,7 +76,7 @@
 
 </t:teacherpage>
 
-<script src="../../Content/js/datatable.js"></script>
+<script src="${ contentPath }/js/datatable.js"></script>
 
 
 <script>
@@ -89,7 +89,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "../../servletCursoAlumno",
+			url: mainPath + "/servletCursoAlumno",
 			data: { idCurso: idCurso},
 			success: fillTable,
 			error: ajaxErrorShow
@@ -153,7 +153,7 @@
 		var result = -1;
 
 		$.ajax({
-			url: "../../servletCursoAlumno",
+			url: mainPath + "/servletCursoAlumno",
 			type: "POST",
 			contentType: "application/json",
 			data: JSON.stringify(data),

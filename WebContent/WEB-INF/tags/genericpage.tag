@@ -3,15 +3,21 @@
 <%@attribute name="footer" fragment="true" %>
 <%@attribute name="title" required="true"%>
 <!DOCTYPE html>
-<html>
 
+	<%
+		String mainPath = request.getContextPath();
+		request.setAttribute("mainPath", mainPath);
+		request.setAttribute("contentPath", mainPath + "/Content");
+	%>
+
+<html>
 <head>
 	 <meta charset="utf-8">
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	 
 	 <title>${ title } - Sistema academico</title>
 	 
-	 <link rel="shortcut icon" href="/Juan_Gonzalez_TP_Integrador1/logo_utn.ico">
+	 <link rel="shortcut icon" href="${ mainPath }/logo_utn.ico">
 
 	 <!-- Tell the browser to be responsive to screen width -->
 	 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -19,25 +25,25 @@
 	 <!-- STYLES -->
 	 
 	 <!-- Bootstrap 3.3.7 -->
-	 <link rel="stylesheet" href="../../Content/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	 <!-- Font Awesome -->
-	 <link rel="stylesheet" href="../../Content/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
+	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
 	 <!-- Ionicons -->
-	 <link rel="stylesheet" href="../../Content/AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
+	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
 	 <!-- Theme style -->
-	 <link rel="stylesheet" href="../../Content/AdminLTE/dist/css/AdminLTE.min.css">
+	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/dist/css/AdminLTE.min.css">
 	 <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
-	 <link rel="stylesheet" href="../../Content/AdminLTE/dist/css/skins/_all-skins.min.css">
+	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/dist/css/skins/_all-skins.min.css">
 	 <!-- Morris chart -->
-	 <link rel="stylesheet" href="../../Content/AdminLTE/bower_components/morris.js/morris.css">
+	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/bower_components/morris.js/morris.css">
 	 <!-- jvectormap -->
-	 <link rel="stylesheet" href="../../Content/AdminLTE/bower_components/jvectormap/jquery-jvectormap.css">
+	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/bower_components/jvectormap/jquery-jvectormap.css">
 	 <!-- Date Picker -->
-<!-- 	 <link rel="stylesheet" href="../../Content/AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"> -->
+<!-- 	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"> -->
 	 <!-- Daterange picker -->
-<!-- 	 <link rel="stylesheet" href="../../Content/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css"> -->
+<!-- 	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css"> -->
 	 <!-- bootstrap wysihtml5 - text editor -->
-<!-- 	 <link rel="stylesheet" href="../../Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
+<!-- 	 <link rel="stylesheet" href="${ contentPath }/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	
@@ -45,15 +51,15 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 	
 	<!-- SELECT 2.0 -->
-	<link rel="stylesheet" type="text/css" href="../../Content/css/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="${ contentPath }/css/select2.min.css">
 	
 	<!-- DATEPICKER -->
-	<link rel="stylesheet" type="text/css" href="../../Content/css/bootstrap-datepicker.min.css">
-	<link rel="stylesheet" type="text/css" href="../../Content/css/bootstrap-datepicker3.min.css">
-	<link rel="stylesheet" type="text/css" href="../../Content/css/bootstrap-datepicker.standalone.min.css">
+	<link rel="stylesheet" type="text/css" href="${ contentPath }/css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" type="text/css" href="${ contentPath }/css/bootstrap-datepicker3.min.css">
+	<link rel="stylesheet" type="text/css" href="${ contentPath }/css/bootstrap-datepicker.standalone.min.css">
 
 
-	<link rel="stylesheet" href="../../Content/css/personal.css" >
+	<link rel="stylesheet" href="${ contentPath }/css/personal.css" >
 	
 	 <!-- END STYLES -->
 
@@ -73,6 +79,8 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
+	<input type="hidden" id="mainPath" value="${ mainPath }" />
+
 	<div class="wrapper">
 
 		<jsp:invoke fragment="header"/>
@@ -88,11 +96,11 @@
 <!-- SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="../../Content/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
 <!--     <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
 
 <!-- jQuery UI 1.11.4 -->
-<script src="../../Content/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js"></script>
 
 <!-- DATATABLE -->
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -100,7 +108,7 @@
 <script src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/datetime-moment.js"></script>
 
 <!-- SELECT 2.0 -->
-<script src="../../Content/js/select2.min.js"></script>
+<script src="${ contentPath }/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/i18n/es.js"></script>
 
 
@@ -110,48 +118,54 @@
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../../Content/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
-<script src="../../Content/AdminLTE/bower_components/raphael/raphael.min.js"></script>
-<script src="../../Content/AdminLTE/bower_components/morris.js/morris.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/raphael/raphael.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
-<script src="../../Content/AdminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
-<script src="../../Content/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="../../Content/AdminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="${ contentPath }/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="${ contentPath }/AdminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- jQuery Knob Chart -->
-<script src="../../Content/AdminLTE/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="../../Content/AdminLTE/bower_components/moment/min/moment.min.js"></script>
-<script src="../../Content/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/moment/min/moment.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
-<!-- <script src="../../Content/AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script> -->
+<!-- <script src="${ contentPath }/AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script> -->
 <!-- Bootstrap WYSIHTML5 -->
-<script src="../../Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="${ contentPath }/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
-<script src="../../Content/AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="../../Content/AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="${ contentPath }/AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../../Content/AdminLTE/dist/js/adminlte.min.js"></script>
+<script src="${ contentPath }/AdminLTE/dist/js/adminlte.min.js"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!-- <script src="../../Content/AdminLTE/dist/js/pages/dashboard.js"></script> -->
+<!-- <script src="${ contentPath }/AdminLTE/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
-<!-- <script src="../../Content/AdminLTE/dist/js/demo.js"></script> -->
+<!-- <script src="${ contentPath }/AdminLTE/dist/js/demo.js"></script> -->
 
 
 <!-- DATEPICKER -->
-<script src="../../Content/vendor/bootstrap/js/popper.min.js"></script>
-<script src="../../Content/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../Content/js/bootstrap-datepicker.min.js"></script>
-<script src="../../Content/js/bootstrap-datepicker.es.min.js"></script>
+<script src="${ contentPath }/vendor/bootstrap/js/popper.min.js"></script>
+<script src="${ contentPath }/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="${ contentPath }/js/bootstrap-datepicker.min.js"></script>
+<script src="${ contentPath }/js/bootstrap-datepicker.es.min.js"></script>
 
 <!-- SWAL2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="../../Content/js/MessageBox.js"></script>
+<script src="${ contentPath }/js/MessageBox.js"></script>
 
 <!-- END SCRIPTS -->
+
+<script>
+
+	var mainPath = document.getElementById('mainPath').value;
+
+</script>
 
 </body>
 </html>

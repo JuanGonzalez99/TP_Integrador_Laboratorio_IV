@@ -17,24 +17,25 @@ import dominio.Curso;
 @WebServlet("/servletCurso")
 public class servletCurso extends baseServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    	mustBeLogged(request, response);
-		
-    	CursoDAO dao = new CursoDAO();
-        List<Curso> list;
-        
-        String parameter = request.getParameter("idProfesor");
-        if (parameter != null && !parameter.trim().isEmpty()) {
-        	mustBeProfesor(request, response);        	
-        	int idProfesor = Integer.parseInt(parameter);
-        	list = dao.GetAllByProfesorId(idProfesor);
-        } else {
-        	mustBeAdmin(request, response);
-        	list = dao.GetAll();
-        }
-        
-        setResponseJson(response, list);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {    	
+    	manejarFuncion(request, response, ()-> {
+        	CursoDAO dao = new CursoDAO();
+            List<Curso> list;
+            
+            String parameter = request.getParameter("idProfesor");
+            if (parameter != null && !parameter.trim().isEmpty()) {
+            	mustBeProfesor(request, response);        	
+            	int idProfesor = Integer.parseInt(parameter);
+            	list = dao.GetAllByProfesorId(idProfesor);
+            } else {
+            	mustBeAdmin(request, response);
+            	list = dao.GetAll();
+            }
+            
+            setResponseJson(response, list);
+    		return null;
+    	});
+    	
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

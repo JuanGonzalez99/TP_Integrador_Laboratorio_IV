@@ -29,7 +29,7 @@ try {
         <small>Listado y ABM</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
+        <li><a href="${ mainPath }/Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li class="active">Alumnos por curso</li>
       </ol>
     </section>
@@ -74,7 +74,7 @@ try {
 
 </t:adminpage>
 
-<script src="../../Content/js/datatable.js"></script>
+<script src="${ contentPath }/js/datatable.js"></script>
 
 
 <script>
@@ -85,7 +85,7 @@ try {
 		
 		$.ajax({
 			type: "GET",
-			url: "../../servletCursoAlumno",
+			url: mainPath + "/servletCursoAlumno",
 			data: { idCurso: idCurso},
 			success: fillTable,
 			error: ajaxErrorShow
@@ -127,7 +127,7 @@ try {
 		var result = -1;
 
 		$.ajax({
-			url: "../../servletCursoAlumno",
+			url: mainPath + "/servletCursoAlumno",
 			type: "POST",
 			contentType: "application/json",
 			data: JSON.stringify(data),
