@@ -264,7 +264,7 @@
 //	function loadProvincias() {
 //		
 //		$.ajax({
-//			url: '../../servletProvincia',
+//			url: mainPath + '/servletProvincia',
 //			type: 'GET',
 //			contentType: 'application/json',
 //			success: function (data) {
@@ -407,7 +407,7 @@
 	    				select = selectLoc;
 	    				options["minimumInputLength"] = 3;
 	    				options["ajax"] = {
-	    					url: '../../servletLocalidad',
+	    					url: mainPath + '/servletLocalidad',
 	    					type: 'GET',
     						dataType: 'json',
     						processResults: function (data) {
@@ -423,7 +423,7 @@
 	    			} else if (th.hasClass('alumno')) {
 	    				select = selectAlum;
 	    				options["ajax"] = {
-	    					url: '../../servletAlumno',
+	    					url: mainPath + '/servletAlumno',
 	    					type: 'GET',
     						dataType: 'json',
     						processResults: function (data) {
@@ -436,7 +436,7 @@
 	    			} else if (th.hasClass('profesor')) {
 	    				select = selectProf;
 	    				options["ajax"] = {
-	    					url: '../../servletProfesor',
+	    					url: mainPath + '/servletProfesor',
 	    					type: 'GET',
     						dataType: 'json',
     						processResults: function (data) {
@@ -451,7 +451,7 @@
 	    			} else if (th.hasClass('materia')) {
 	    				select = selectMat;
 	    				options["ajax"] = {
-	    					url: '../../servletMateria',
+	    					url: mainPath + '/servletMateria',
 	    					type: 'GET',
     						dataType: 'json',
     						delay: 250,
