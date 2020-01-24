@@ -85,7 +85,7 @@
 		}
 		
 		$.each(list, function () {
-			var profesor = this.profesor.apellido + ", " + this.profesor.nombre;
+			var profesor = this.profesor.apellido + ", " + this.profesor.nombre + " - " + this.profesor.id;
 
 			data = [];
 			data.push(this.id);

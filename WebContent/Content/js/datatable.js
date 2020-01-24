@@ -580,7 +580,7 @@
  		}); // fin .each()
  		
  		var result = 0;
-debugger;
+
  		if (Object.keys(obj).length > 0) {
  			result = insertOrUpdate(obj, oTable);
  		}
@@ -596,6 +596,8 @@ debugger;
 
  	 			if (th.hasClass('row-id') && result > 0) {
  	 				value = result;
+ 	 			} else if (th.hasClass('detail-alumnos') && result > 0) {
+ 	 				value = btnAlumnos(result);
  	 			} else {
  	 				value = values["_" + index];
  	 			}

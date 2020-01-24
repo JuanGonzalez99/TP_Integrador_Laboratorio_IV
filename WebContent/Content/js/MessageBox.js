@@ -5,7 +5,7 @@
 function messageBox(){
 
 	this.baseSwal = Swal.mixin({
-		title: '<h2>Atención</h2>',
+		title: '<h2>Atencion</h2>',
 		width: '30%',
 		showCloseButton: true,
 		showCancelButton: false,

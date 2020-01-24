@@ -77,6 +77,9 @@ public class servletCursoAlumno extends baseServlet {
 			|| entidad.getRecuperatorio2() < 0 || entidad.getRecuperatorio2() > 10) {
 			return "Las notas deben estar entre 1 y 10";
 		}
+		if (new CursoAlumnoDAO().GetCountByAlumnoAndCursoId(entidad.getIdAlumno(), entidad.getIdCurso()) > 0) {
+			return "El alumno ya se encuentra inscripto en este curso";
+		}
 		
 		return null;
 	}

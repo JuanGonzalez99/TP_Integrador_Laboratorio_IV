@@ -103,7 +103,7 @@ try {
 		var oTable = $('#datatable').dataTable();
 
 		$.each(list, function () {
-			var alumno = this.alumno.nombre + " " + this.alumno.apellido;
+			var alumno = this.alumno.apellido + ", " + this.alumno.nombre + " - " + this.alumno.id;
 			
 			data = [];
 			data.push(this.id);

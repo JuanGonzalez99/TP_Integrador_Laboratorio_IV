@@ -19,6 +19,7 @@ public class CursoAlumnoDAO implements IDao<CursoAlumno> {
 	private static final String getall = "SELECT * FROM " + table_name;
 	private static final String getallenabled = "SELECT * FROM " + table_name + " WHERE deshabilitado = 0";
 	private static final String getallbycursoid = "SELECT * FROM " + table_name + " WHERE idCurso = ? AND deshabilitado = 0";
+	private static final String getcountbyalumnoandcursoid = "SELECT COUNT(*) FROM " + table_name + " WHERE idAlumno = ? AND idCurso = ? AND deshabilitado = 0";
 
 	@Override
 	public int Insert(CursoAlumno inserted) {
@@ -174,6 +175,31 @@ public class CursoAlumnoDAO implements IDao<CursoAlumno> {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public int GetCountByAlumnoAndCursoId(int alumnoId, int cursoId) {
+		int result = -1;
+
+		PreparedStatement statement;
+		ResultSet resultSet;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(getcountbyalumnoandcursoid);
+			statement.setInt(1, alumnoId);
+			statement.setInt(2, cursoId);
+			resultSet = statement.executeQuery();
+			while(resultSet.next())
+			{
+				result = resultSet.getInt(1);
+			}
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}		
+		
+		return result;
 	}
 
 	@Override
