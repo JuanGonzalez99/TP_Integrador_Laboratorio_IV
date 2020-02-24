@@ -23,7 +23,7 @@
 <!--         <small>Control panel</small> -->
       </h1>
       <ol class="breadcrumb">
-        <li><a href="${ mainPath }/Account/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
+        <li><a href="${ mainPath }/Profesor/Index.jsp"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li class="active">Cursos por profesor</li>
       </ol>
     </section>

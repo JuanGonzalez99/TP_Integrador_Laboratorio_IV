@@ -13,10 +13,9 @@ import com.google.gson.Gson;
 import dao.CursoAlumnoDAO;
 import dominio.CursoAlumno;
 
+@SuppressWarnings("serial")
 @WebServlet("/servletCursoAlumno")
 public class servletCursoAlumno extends baseServlet {
-	private static final long serialVersionUID = 1L;
-	
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CursoAlumnoDAO dao = new CursoAlumnoDAO();
