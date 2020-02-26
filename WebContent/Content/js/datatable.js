@@ -49,9 +49,6 @@
 	$(function() {
 		triggerTableLoader(true);
 
-	    $.fn.dataTable.moment( 'dd/mm/yyyy' );
-	    $.fn.dataTable.ext.errMode = 'none';
-
 		$('#datatable thead tr th').each(function(i) {
 			var th = $(this);
 			

@@ -93,6 +93,7 @@
 
 </body>
 
+
 <!-- SCRIPTS -->
 
 <!-- jQuery 3 -->
@@ -160,10 +161,13 @@
 <script src="${ contentPath }/js/MessageBox.js"></script>
 
 <!-- END SCRIPTS -->
-
+	
 <script>
 
 	var mainPath = document.getElementById('mainPath').value;
+
+    $.fn.dataTable.moment( 'dd/mm/yyyy' );
+    $.fn.dataTable.ext.errMode = 'throw';
 
 </script>
 

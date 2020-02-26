@@ -5,6 +5,7 @@ public class ReportViewModel {
 	private String curso;
 	private int alumnosRegular;
 	private int alumnosLibres;
+	private int alumnosTotales;
 	private float porcAlumRegular;
 	private float porcAlumLibres;
 	
@@ -26,6 +27,12 @@ public class ReportViewModel {
 	}
 	public void setAlumnosLibres(int alumnosLibres) {
 		this.alumnosLibres = alumnosLibres;
+	}
+	public int getAlumnosTotales() {
+		return alumnosTotales;
+	}
+	public void setAlumnosTotales(int alumnosTotales) {
+		this.alumnosTotales = alumnosTotales;
 	}
 	public float getPorcAlumRegular() {
 		return porcAlumRegular;

@@ -21,9 +21,20 @@ public class servletReporte extends baseServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	Integer materiaId = Integer.parseInt(request.getParameter("materiaId"));
-    	Integer desde = Integer.parseInt(request.getParameter("desde"));
-    	Integer hasta = Integer.parseInt(request.getParameter("hasta"));
+    	Integer materiaId = null;
+    	Integer desde = null;
+    	Integer hasta = null;
+    	
+    	String param1 = request.getParameter("materiaId");
+    	String param2 = request.getParameter("desde");
+    	String param3 = request.getParameter("hasta");
+    	
+    	if (param1 != null && !param1.isEmpty())
+    		materiaId = Integer.parseInt(param1);
+    	if (param2 != null && !param2.isEmpty())
+    		desde = Integer.parseInt(param2);
+    	if (param3 != null && !param3.isEmpty())
+    		hasta = Integer.parseInt(param3);
     	
     	ReportDAO dao = new ReportDAO();
     	List<ReportViewModel> reports = dao.GetReport(materiaId, desde, hasta);

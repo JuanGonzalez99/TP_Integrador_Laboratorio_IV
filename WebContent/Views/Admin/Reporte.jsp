@@ -25,27 +25,27 @@
 		    </div>
 		    <div class="box-body">
 		        <div class="col-md-12 box-header with-border">
-		        	<div class="row">
-		        		<div class="col-md-12">
-		        			<label>Materia</label>
-		        			<select class="form-control"></select>
-		        		</div>
-		        	</div>
 			        <div class="row">
-			        	<div class="col-md-6">
-			        		<label>Desde</label>
-			        		<input type="number" class="form-control" />
-			        	</div>
-			        	<div class="col-md-6">
-			        		<label>Hasta</label>
-			        		<input type="number" class="form-control" />
+			        	<div class="form-group">
+			        		<div class="col-md-8">
+			        			<label>Materia</label>
+			        			<select id="materia" class="form-control"></select>
+			        		</div>
 			        	</div>
 			        </div>
-			        <div style="margin-bottom: 20px;">
-			            <button type="button" id="search" class="btn btn-info">
-			                Buscar
-			            </button>
+			        <div class="row">
+				        <div class="form-group">
+				        	<div class="col-md-4">
+				        		<label>Desde</label>
+				        		<input type="number" id="desde" class="form-control" />
+				        	</div>
+				        	<div class="col-md-4">
+				        		<label>Hasta</label>
+				        		<input type="number" id="hasta" class="form-control" />
+				        	</div>
+				        </div>
 			        </div>
+					<button type="button" id="search" class="btn btn-info" style="margin:20px 0;">Buscar</button>
 		            <table class="table table-striped table-bordered dataTable" id="datatable" style="width: 100%">
 		                <thead>
 		                    <tr>
