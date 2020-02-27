@@ -28,33 +28,17 @@ $(function () {
                 sSortDescending: ": Activar para ordenar la columna de manera descendente"
             }
         },
-        /*columns: [
-        	{data: 'curso'},
-        	{data: 'alumnosRegular'},
-        	{data: 'alumnosLibres'},
-        	{data: 'alumnosTotales'},
-        	{data: 'porcAlumRegular'},
-        	{data: 'porcAlumLibres'},
+        columnDefs: [
+        	{
+        		targets: [4, 5],
+        	    render: $.fn.dataTable.render.number( '.', ',', 2, '', '%' )
+        	}
         ],
-        ajax: {
-            url: mainPath + "/servletReporte",
-            type: 'POST',
-            dataSrc: '',
-            data: function ( d ) {
-            	return $.extend( {}, d, {
-					materiaId: 10,//$("#dtStartAlternate").val(),
-					desde: 2018,//$("#dtEndAlternate").val(),
-					hasta: 2020//$("#selProvincia").val()
-               });
-            }
-        },*/
     }); // fin dataTable()
 	
 	$('#search').click(function () {
 		triggerLoader(true);
-		/*var dataTable = $('#dataTable').DataTable();
-		dataTable.ajax.reload();*/
-		test();
+		getReporte();
 	});
 	
 	initPlugins();
@@ -86,7 +70,7 @@ function initSelect2() {
 		        var errorLog = xhr.status + ': ' + xhr.statusText;
 		        console.log('Error - ' + errorLog);
 			}
-		}	
+		}
 	};
 	
 	$('#materia').select2(options);
@@ -97,7 +81,6 @@ function initDatepicker() {
 	var optionsDP = {
 	    format: "dd/mm/yyyy",
 	    weekStart: 1,
-//	    todayBtn: "linked",
 	    clearBtn: true,
 	    language: "es",
 	    autoclose: true,
@@ -106,7 +89,6 @@ function initDatepicker() {
         startView: 3,
         minViewMode: 2,
         maxViewMode: 4,
-//	    orientation: "bottom auto"
 	};
 	
 	$('#desde').datepicker(optionsDP);
@@ -121,26 +103,17 @@ function triggerLoader(state) {
 	}
 }
 
-function test() {
+function getReporte() {
 	
 	var data = {
 		materiaId: $("#materia").val(),
 		desde: $("#desde").val(),
 		hasta: $("#hasta").val()
     };
-	
-	debugger;
 
     $.ajax({
         url: mainPath + "/servletReporte",
         type: 'POST',
-        /*data: function (d) {
-        	return $.extend( {}, d, {
-				materiaId: $("#materia").val(),
-				desde: $("#desde").val(),
-				hasta: $("#hasta").val()
-           });
-        },*/
         data: data,
         success: fillTable,
         error: function (xhr, status, error) {

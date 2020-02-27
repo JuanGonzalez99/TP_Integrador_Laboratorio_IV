@@ -55,6 +55,11 @@ public class ReportDAO {
 		ReportViewModel result = new ReportViewModel();
 
 		result.setCurso(resultSet.getString("curso"));
+		result.setAlumnosRegular(resultSet.getInt("alumnosRegular"));
+		result.setAlumnosLibres(resultSet.getInt("alumnosLibres"));
+		result.setAlumnosTotales(resultSet.getInt("alumnosTotales"));
+		result.setPorcAlumRegular(resultSet.getFloat("porcAlumRegular"));
+		result.setPorcAlumLibres(resultSet.getFloat("porcAlumLibres"));
 		
 		return result;
 	}
