@@ -5,12 +5,23 @@
 
 
 <%
-	int idCurso = 1;
+try {
+
+	String param = request.getParameter("idCurso");
+	if (param == null || param.isEmpty())
+	{
+		throw new Exception();
+	}
+	int idCurso = Integer.parseInt(param);
 	CursoDAO dao = new CursoDAO();
 	Curso curso = dao.GetById(idCurso);
-
+	
 	request.setAttribute("curso", curso);
 	request.setAttribute("idCurso", idCurso);
+} catch (Exception ex) {	
+	response.setHeader("Location", request.getContextPath() + "/Login");
+	response.setStatus(302);
+}
 %>
 
 <t:teacherpage title="Alumnos por curso">
@@ -107,8 +118,6 @@
 		}
 		
 		$.each(list, function () {
-			var idEstado = this.idEstado;
-			var estado = idEstado == 1 ? "Regular" : (idEstado == 2 ? "Libre" : "");
 			
 			data = [];
 			data.push(this.id);
@@ -120,9 +129,9 @@
 			data.push(parseNota(this.parcial2));
 			data.push(parseNota(this.recuperatorio1));
 			data.push(parseNota(this.recuperatorio2));
-			data.push(idEstado);
-			data.push(estado);
-			
+			data.push(this.idEstado || "");
+			data.push(this.estado.descripcion || "");
+
 			oTable.fnAddData(data);
 
 		});

@@ -7,9 +7,11 @@
 	
 	var canEdit = true;
 	var canDelete = true;
-//	var hasAlumnos = false;
-//	var clase = '';
-//	var hasProvincia = false;
+	
+	var semestres = [];
+	var estados = [
+		{id: 0, text: ''}
+	];
 	
 	var btnEdit = '<button data-toggle="tooltip" data-container="body" title="Editar" class="btn btn-sm btn-flat btn-success edit"><i class="fa fa-pencil"></i></button>';
 	var btnSave = '<button data-toggle="tooltip" data-container="body" title="Guardar" class="btn btn-sm btn-flat btn-primary save"><i class="fa fa-save"></i></button>';
@@ -17,7 +19,8 @@
 	var btnCancel = '<button data-toggle="tooltip" data-container="body" title="Cancelar" class="btn btn-sm btn-flat btn-danger delete"><i class="fa fa-trash-o"></i></button>';
 
 	function btnAlumnos(idCurso) {
-		return '<a href="http://localhost:8180/Juan_Gonzalez_TP_Integrador1/Views/Admin/AlumnosCurso.jsp?idCurso='+ idCurso +'">Ver alumnos</a>';
+		var type = tipoUsuario == 1 ? "/Admin" : "/Profesor";
+		return '<a href="' + mainPath + type + '/AlumnosCurso?idCurso='+ idCurso +'">Ver alumnos</a>';
 	}
 	
 	function triggerTableLoader(status) {
@@ -46,8 +49,39 @@
 		table.draw();
 	}
 	
+	function loadArrays() {
+
+		$.ajax({
+			url: mainPath + '/servletSemestre',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				var sem = data.map(function (item) { 
+					return { id: item.id, text: item.descripcion } 
+				});
+				semestres = semestres.concat(sem);
+		    },
+			error: ajaxError
+		});
+
+		$.ajax({
+			url: mainPath + '/servletEstado',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				var est = data.map(function (item) { 
+					return { id: item.id, text: item.descripcion } 
+				});
+				estados = estados.concat(est);
+		    },
+			error: ajaxError
+		});
+	}
+	
 	$(function() {
 		triggerTableLoader(true);
+		
+		loadArrays();
 
 		$('#datatable thead tr th').each(function(i) {
 			var th = $(this);
@@ -299,45 +333,12 @@
 	    else 
 	    	return value;
 	}
-	
-//	var alumnos = [
-//		'Mario Perez'
-//		, 'Lucia Gomez'
-//		, 'Mauricio Fernandez'
-//	];
-	
-	var semestres = [
-		{id: 1, text: 'Primer semestre'}
-		, {id: 2, text: 'Segundo semestre'}
-	];
-	
-	var estados = [
-		{id: 0, text: ''}
-		, {id: 1, text: 'Regular'}
-		, {id: 2, text: 'Libre'}
-	];
-		
-//    var selectAlum = $('<select lang="es">');
-//    alumnos.forEach(function(value, i) {
-//    	selectAlum.append($('<option>')
-//			.val(i)
-//			.text(value));
-//	});
-//    
 
 	var selectProv = $('<select lang="es">');
 	var selectLoc = $('<select lang="es" style="width: 150px;">');
     var selectProf = $('<select lang="es" style="width: 150px;">');
     var selectMat = $('<select lang="es" style="width: 150px;">');
     var selectAlum = $('<select lang="es" style="width: 150px;">');
-
-    var selectSem = $('<select lang="es">');
-    semestres.forEach(function(elem) {
-    	selectSem.append($('<option>')
-			.val(elem.id)
-			.text(elem.text));
-    });
-
 	
 	var optionsDP = {
 	    format: "dd/mm/yyyy",
@@ -462,18 +463,25 @@
 	    			    var option = new Option(aData[i], aData[i-1], true, true);
 	    			    select.append(option).trigger('change');
 	    			} else if (th.hasClass('semestre')) {
-	    				select = selectSem.clone();
+	    			    var selectSem = $('<select lang="es" style="width: 150px;">');
+	    			    semestres.forEach(function(elem) {
+	    			    	selectSem.append($('<option>')
+	    						.val(elem.id)
+	    						.text(elem.text));
+	    			    });
+	    				select = selectSem;
+	    				
 	    			} else if (th.hasClass('estado')) {
-						var td = $(this);
-						var selectEst = $('<select lang="es" style="width: 100px;">');
-					    estados.forEach(function(elem) {
-					    	selectEst.append($('<option>')
-								.val(elem.id)
-								.text(elem.text));
-					    });
+	    				var selectEst = $('<select lang="es" style="width: 100px;">');
+	    			    estados.forEach(function(elem) {
+	    			    	selectEst.append($('<option>')
+	    						.val(elem.id)
+	    						.text(elem.text));
+	    			    });
+
 					    var idEstado = aData[i-1];
-//					    selectEst.ready(function () { selectEst.select2(); });
 					    selectEst.val(idEstado).change();
+					    var td = $(this);
 					    td.append(selectEst);
 					    return;
 					}

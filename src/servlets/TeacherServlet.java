@@ -16,7 +16,9 @@ public class TeacherServlet extends baseServlet {
     		mustBeProfesor(request, response);
     		
 	    	String view = getView(request);
-	    	String path = teacherPath + view + ".jsp";
+	    	String query = request.getQueryString();
+    		query = (query != null && !query.isEmpty()) ? ('?' + query) : "";
+	    	String path = teacherPath + view + ".jsp" + query;
 
 	    	request.getRequestDispatcher(path).forward(request, response);
 	    	return null;

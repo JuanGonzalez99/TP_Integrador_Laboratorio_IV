@@ -14,6 +14,8 @@ import dominio.Usuario;
 @SuppressWarnings("serial")
 @WebServlet("/Login")
 public class LoginServlet extends baseServlet {
+
+	private final String loginPath = "/Views/Account/Login.jsp";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher(loginPath).forward(request, response);

@@ -223,18 +223,21 @@ public class CursoAlumnoDAO implements IDao<CursoAlumno> {
 		entidad.setParcial2(resultSet.getInt("parcial2"));
 		entidad.setRecuperatorio1(resultSet.getInt("recuperatorio1"));
 		entidad.setRecuperatorio2(resultSet.getInt("recuperatorio2"));
-		entidad.setIdEstado(resultSet.getInt("idEstado"));
 		entidad.setDeshabilitado(resultSet.getBoolean("deshabilitado"));
 		
 		int idCurso = resultSet.getInt("idCurso");
 		int idAlumno = resultSet.getInt("idAlumno");
+		Integer idEstado = resultSet.getInt("idEstado");
 		CursoDAO daoCurso = new CursoDAO();
 		AlumnoDAO daoAlumno = new AlumnoDAO();
+		EstadoDAO daoEstado = new EstadoDAO();
 		
 		entidad.setIdCurso(idCurso);
 		entidad.setCurso(daoCurso.GetById(idCurso));
 		entidad.setIdAlumno(idAlumno);
 		entidad.setAlumno(daoAlumno.GetById(idAlumno));
+		entidad.setIdEstado(resultSet.wasNull() ? null : idEstado);
+		entidad.setEstado(daoEstado.GetById(idEstado));
 		
 		return entidad;
 	}

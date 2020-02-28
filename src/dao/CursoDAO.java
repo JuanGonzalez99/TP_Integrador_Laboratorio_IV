@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dominio.Curso;
-import dominio.Semestre;
 
 public class CursoDAO implements IDao<Curso> {
 
@@ -184,15 +183,15 @@ public class CursoDAO implements IDao<Curso> {
 		
 		MateriaDAO daoMateria = new MateriaDAO();
 		ProfesorDAO daoProfesor = new ProfesorDAO();
+		SemestreDAO daoSemestre = new SemestreDAO();
 		int idMateria = resultSet.getInt("idMateria");
-		int idSemestre = resultSet.getInt("idSemestre");
-		String semestre = idSemestre == 1 ? "Primer semestre" : (idSemestre == 2 ? "Segundo semestre" : "");
 		int idProfesor = resultSet.getInt("idProfesor");
+		int idSemestre = resultSet.getInt("idSemestre");
 		
 		entidad.setIdMateria(idMateria);
 		entidad.setMateria(daoMateria.GetById(idMateria));
 		entidad.setIdSemestre(idSemestre);
-		entidad.setSemestre(new Semestre(idSemestre, semestre));
+		entidad.setSemestre(daoSemestre.GetById(idSemestre));
 		entidad.setIdProfesor(idProfesor);
 		entidad.setProfesor(daoProfesor.GetById(idProfesor));
 		

@@ -7,6 +7,8 @@
 		
 		if (!session.getAttribute("idTipoUsuario").equals(1))
 			throw new Exception();
+		int tipoUsuario = 1;
+		request.setAttribute("tipoUsuario", tipoUsuario);
 	} catch (Exception e) {
 		response.setHeader("Location", request.getContextPath() + "/Login");
 		response.setStatus(302);
@@ -15,6 +17,12 @@
 
 <t:genericpage title="${ title }">
     <jsp:attribute name="header">
+    
+    	<input type="hidden" id="tipoUsuario" value="${ tipoUsuario }" />
+    	
+    	<script>
+    		var tipoUsuario = document.getElementById('tipoUsuario');
+    	</script>	
 
 		<header class="main-header">
 		<!-- Logo -->

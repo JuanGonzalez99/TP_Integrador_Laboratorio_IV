@@ -11,7 +11,8 @@ public class CursoAlumno {
 	private int parcial2;
 	private int recuperatorio1;
 	private int recuperatorio2;
-	private int idEstado;
+	private Integer idEstado;
+	private Estado estado;
 	private boolean deshabilitado;
 	
 	
@@ -69,11 +70,17 @@ public class CursoAlumno {
 	public void setRecuperatorio2(int recuperatorio2) {
 		this.recuperatorio2 = recuperatorio2;
 	}
-	public int getIdEstado() {
+	public Integer getIdEstado() {
 		return idEstado;
 	}
-	public void setIdEstado(int idEstado) {
+	public void setIdEstado(Integer idEstado) {
 		this.idEstado = idEstado;
+	}
+	public Estado getEstado() {
+		return estado;
+	}
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 	public boolean isDeshabilitado() {
 		return deshabilitado;

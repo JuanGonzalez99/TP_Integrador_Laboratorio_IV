@@ -1,7 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -18,7 +21,6 @@ import helpers.NotAuthorizedException;
 public abstract class baseServlet extends HttpServlet {	
 	
 	protected static final String mainPath = "/Juan_Gonzalez_TP_Integrador1";
-	protected static final String loginPath = "/Views/Account/Login.jsp";
 	protected static final String adminPath = "/Views/Admin/";
 	protected static final String teacherPath = "/Views/Profesor/";
 	
@@ -128,5 +130,16 @@ public abstract class baseServlet extends HttpServlet {
 			response.setStatus(402); // Unprocessable entity
 		}
 	}
+	
+	/*private Map<String, String> splitQuery(HttpServletRequest request) throws UnsupportedEncodingException {
+	    Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+	    String query = request.getQueryString();
+	    String[] pairs = query.split("&");
+	    for (String pair : pairs) {
+	        int idx = pair.indexOf("=");
+	        query_pairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+	    }
+	    return query_pairs;
+	}*/
 	
 }

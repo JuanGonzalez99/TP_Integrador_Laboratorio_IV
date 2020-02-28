@@ -16,7 +16,9 @@ public class AdminServlet extends baseServlet {
     		mustBeAdmin(request, response);
     			    	
 	    	String view = getView(request);
-	    	String path = adminPath + view + ".jsp";
+	    	String query = request.getQueryString();
+    		query = (query != null && !query.isEmpty()) ? ('?' + query) : "";
+	    	String path = adminPath + view + ".jsp" + query;
 	    	
 	    	request.getRequestDispatcher(path).forward(request, response);
 	    	return null;

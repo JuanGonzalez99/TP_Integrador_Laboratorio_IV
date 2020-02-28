@@ -106,7 +106,7 @@
 			data.push(this.materia.nombre);
 			data.push(this.semestre.descripcion);
 			data.push(this.anio);
-			data.push('<a target="_blank" href="http://localhost:8180/Juan_Gonzalez_TP_Integrador1/Views/Profesor/AlumnosCurso.jsp?idCurso='+ this.id +'" class="btn btn-link alumnos">Lista de Alumnos</a>');
+			data.push('<a target="_blank" href="' + mainPath +'/Profesor/AlumnosCurso?idCurso='+ this.id +'" class="btn btn-link alumnos">Lista de Alumnos</a>');
 			
 			oTable.fnAddData(data);
 			
