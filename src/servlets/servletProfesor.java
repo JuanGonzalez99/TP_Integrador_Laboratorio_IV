@@ -45,9 +45,10 @@ public class servletProfesor extends baseServlet {
 			}
 			else {
 		        if (profesor.getId() == 0) {
-		        	UsuarioDAO daoUsuario = new UsuarioDAO();
 		        	
 		        	int id = dao.Insert(profesor);
+		        	
+		        	UsuarioDAO daoUsuario = new UsuarioDAO();
 		        	Usuario usuario = new Usuario();
 		        	usuario.setEmail(profesor.getEmail());
 		        	usuario.setContrasenia(String.valueOf(profesor.getDni()));
@@ -56,7 +57,7 @@ public class servletProfesor extends baseServlet {
 		        	usuario.setNombre(profesor.getNombre());
 		        	usuario.setApellido(profesor.getApellido());
 		        	int idUsuario = daoUsuario.Insert(usuario);
-		        	
+	        				        	
 		        	setJson(id > 0 && idUsuario > 0, id);
 		        } else {
 		        	setJson(dao.Update(profesor));

@@ -70,10 +70,10 @@ public class servletCursoAlumno extends baseServlet {
 		if (entidad.getIdAlumno() == 0) {
 			return "Debe indicar el alumno";
 		}
-		if (entidad.getParcial1() < 0 || entidad.getParcial1() > 10
-			|| entidad.getParcial2() < 0 || entidad.getParcial2() > 10
-			|| entidad.getRecuperatorio1() < 0 || entidad.getRecuperatorio1() > 10
-			|| entidad.getRecuperatorio2() < 0 || entidad.getRecuperatorio2() > 10) {
+		if (entidad.getParcial1() != null && (entidad.getParcial1() < 1 || entidad.getParcial1() > 10)
+			|| entidad.getParcial2() != null && (entidad.getParcial2() < 1 || entidad.getParcial2() > 10)
+			|| entidad.getRecuperatorio1() != null && (entidad.getRecuperatorio1() < 1 || entidad.getRecuperatorio1() > 10)
+			|| entidad.getRecuperatorio2() != null && (entidad.getRecuperatorio2() < 1 || entidad.getRecuperatorio2() > 10)) {
 			return "Las notas deben estar entre 1 y 10";
 		}
 		if (entidad.getId() == 0 && new CursoAlumnoDAO().GetCountByAlumnoAndCursoId(entidad.getIdAlumno(), entidad.getIdCurso()) > 0) {

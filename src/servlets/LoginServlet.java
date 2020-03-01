@@ -32,6 +32,7 @@ public class LoginServlet extends baseServlet {
 			
 			Usuario usuario = dao.GetByEmailByPass(email, password);
 			if (usuario != null) {
+	            request.getSession().setAttribute("id", usuario.getId());
 	            request.getSession().setAttribute("email", email);
 	            request.getSession().setAttribute("idTipoUsuario", usuario.getIdTipoUsuario());
 	            
@@ -46,6 +47,7 @@ public class LoginServlet extends baseServlet {
 	            if (tipoUsuario == 1) {
 	            	location = "/Admin/" + "Index";
 	            } else if (tipoUsuario == 2) {
+		            request.getSession().setAttribute("idProfesor", usuario.getIdProfesor());
 	            	location = "/Profesor/" + "Index";
 	            }
 	            redirect(request, response, location);

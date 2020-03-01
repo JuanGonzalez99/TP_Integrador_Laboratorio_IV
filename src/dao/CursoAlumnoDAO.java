@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,11 +65,32 @@ public class CursoAlumnoDAO implements IDao<CursoAlumno> {
 		try
 		{
 			statement = conexion.prepareStatement(update);
-			statement.setInt(1, updated.getParcial1());
-			statement.setInt(2, updated.getParcial2());
-			statement.setInt(3, updated.getRecuperatorio1());
-			statement.setInt(4, updated.getRecuperatorio2());
-			statement.setInt(5, updated.getIdEstado());
+
+			if (updated.getParcial1() != null)
+				statement.setInt(1, updated.getParcial1());
+			else
+				statement.setNull(1, Types.INTEGER);
+
+			if (updated.getParcial2() != null)
+				statement.setInt(2, updated.getParcial2());
+			else
+				statement.setNull(2, Types.INTEGER);
+			
+			if (updated.getRecuperatorio1() != null)
+				statement.setInt(3, updated.getRecuperatorio1());
+			else
+				statement.setNull(3, Types.INTEGER);
+			
+			if (updated.getRecuperatorio2() != null)
+				statement.setInt(4, updated.getRecuperatorio2());
+			else
+				statement.setNull(4, Types.INTEGER);
+			
+			if (updated.getIdEstado() != null)
+				statement.setInt(5, updated.getIdEstado());
+			else
+				statement.setNull(5, Types.INTEGER);
+				
 			statement.setInt(6, updated.getId());
 			if(statement.executeUpdate() > 0)
 			{
@@ -219,15 +241,15 @@ public class CursoAlumnoDAO implements IDao<CursoAlumno> {
 		CursoAlumno entidad = new CursoAlumno();
 		
 		entidad.setId(resultSet.getInt("id"));
-		entidad.setParcial1(resultSet.getInt("parcial1"));
-		entidad.setParcial2(resultSet.getInt("parcial2"));
-		entidad.setRecuperatorio1(resultSet.getInt("recuperatorio1"));
-		entidad.setRecuperatorio2(resultSet.getInt("recuperatorio2"));
+		entidad.setParcial1((Integer)resultSet.getObject("parcial1"));
+		entidad.setParcial2((Integer)resultSet.getObject("parcial2"));
+		entidad.setRecuperatorio1((Integer)resultSet.getObject("recuperatorio1"));
+		entidad.setRecuperatorio2((Integer)resultSet.getObject("recuperatorio2"));
 		entidad.setDeshabilitado(resultSet.getBoolean("deshabilitado"));
 		
 		int idCurso = resultSet.getInt("idCurso");
 		int idAlumno = resultSet.getInt("idAlumno");
-		Integer idEstado = resultSet.getInt("idEstado");
+		Integer idEstado = (Integer)resultSet.getObject("idEstado");
 		CursoDAO daoCurso = new CursoDAO();
 		AlumnoDAO daoAlumno = new AlumnoDAO();
 		EstadoDAO daoEstado = new EstadoDAO();
@@ -236,8 +258,8 @@ public class CursoAlumnoDAO implements IDao<CursoAlumno> {
 		entidad.setCurso(daoCurso.GetById(idCurso));
 		entidad.setIdAlumno(idAlumno);
 		entidad.setAlumno(daoAlumno.GetById(idAlumno));
-		entidad.setIdEstado(resultSet.wasNull() ? null : idEstado);
-		entidad.setEstado(daoEstado.GetById(idEstado));
+		entidad.setIdEstado(idEstado);
+		entidad.setEstado(daoEstado.GetById(idEstado != null ? idEstado : 0));
 		
 		return entidad;
 	}

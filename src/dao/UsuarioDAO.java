@@ -13,9 +13,9 @@ public class UsuarioDAO implements IDao<Usuario>{
 
 	private static final String table_name = "usuarios";
 	private static final String insert = "INSERT INTO " + table_name + "(email, contrasenia, idTipoUsuario, idProfesor, nombre, apellido) VALUES (?, MD5( ? ), ?, ?, ?, ?)";
+	private static final String deletebyprof = "UPDATE " + table_name + " SET deshabilitado = 1 WHERE idProfesor = ?";
 	private static final String getbyemailbypass = "SELECT * FROM " + table_name + " WHERE email = ? AND contrasenia = MD5( ? )";
-	
-
+	private static final String getprofesoridbyid = "SELECT idProfesor FROM " + table_name + " WHERE id = ?";
 
 	@Override
 	public int Insert(Usuario inserted) {
@@ -63,9 +63,30 @@ public class UsuarioDAO implements IDao<Usuario>{
 	}
 
 	@Override
-	public boolean Delete(int id) {
+	public boolean Delete(int id) {		
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public boolean DeleteByProfesorId(int idProf) {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		boolean result = false;
+		try 
+		{
+			statement = conexion.prepareStatement(deletebyprof);
+			statement.setInt(1, idProf);
+			if(statement.executeUpdate() > 0)
+			{
+				conexion.commit();
+				result = true;
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
@@ -104,6 +125,29 @@ public class UsuarioDAO implements IDao<Usuario>{
 		return usuario;
 	}
 
+	public int GetProfesorIdById(int id) {
+		PreparedStatement statement;
+		ResultSet resultSet;
+		Usuario usuario = null;
+		Conexion conexion = Conexion.getConexion();
+		try
+		{
+			statement = conexion.getSQLConexion().prepareStatement(getprofesoridbyid);
+			statement.setInt(1, id);
+			resultSet = statement.executeQuery();
+			while(resultSet.next())
+			{
+				usuario = Make(resultSet);
+			}
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return usuario.getIdProfesor();
+	}
+
 	@Override
 	public List<Usuario> GetAllByName(String name) {
 		// TODO Auto-generated method stub
@@ -124,6 +168,7 @@ public class UsuarioDAO implements IDao<Usuario>{
 		entidad.setEmail(resultSet.getString("email"));
 		entidad.setContrasenia(resultSet.getString("contrasenia"));
 		entidad.setIdTipoUsuario(resultSet.getInt("idTipoUsuario"));
+		entidad.setIdProfesor((Integer)resultSet.getObject("idProfesor"));
 		entidad.setNombre(resultSet.getString("nombre"));
 		entidad.setApellido(resultSet.getString("apellido"));
 		entidad.setDeshabilitado(resultSet.getBoolean("deshabilitado"));

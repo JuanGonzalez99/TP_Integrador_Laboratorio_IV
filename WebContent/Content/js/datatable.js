@@ -10,7 +10,7 @@
 	
 	var semestres = [];
 	var estados = [
-		{id: 0, text: ''}
+		{id: '', text: ''}
 	];
 	
 	var btnEdit = '<button data-toggle="tooltip" data-container="body" title="Editar" class="btn btn-sm btn-flat btn-success edit"><i class="fa fa-pencil"></i></button>';
@@ -552,7 +552,9 @@
 
 			} else if (th.hasClass('id')) {
  				var select = tr.find('td').eq(index+1).children();
- 				value = Number(select.val());
+ 				value = null;
+				if (select.val() != '')
+					value = Number(select.val());
  				
  			} else if (th.hasClass('nota')) {
  				value = deparseNota(value);

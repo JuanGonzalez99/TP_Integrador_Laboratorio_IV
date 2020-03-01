@@ -142,15 +142,15 @@ try {
 	}
 	
 	function parseNota(nota) {
-		if (nota == 0) {
-			return "";
+		if (nota == null) {
+			return null;
 		}
 		return nota.toString();
 	}
 	
 	function deparseNota(nota) {
 		if (nota == null || nota.trim() == "") {
-			return 0;
+			return null;
 		}			
 		return parseInt(nota);
 	}

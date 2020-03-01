@@ -21,7 +21,7 @@
     	<input type="hidden" id="tipoUsuario" value="${ tipoUsuario }" />
     	
     	<script>
-    		var tipoUsuario = document.getElementById('tipoUsuario');
+    		var tipoUsuario = document.getElementById('tipoUsuario').value;
     	</script>	
 
 		<header class="main-header">
@@ -143,6 +143,7 @@
 		          <li><a href="${ mainPath }/Admin/Alumnos"><i class="fa fa-circle-o"></i>Alumnos</a></li>
 		          <li><a href="${ mainPath }/Admin/Profesores"><i class="fa fa-circle-o"></i>Profesores</a></li>
 		          <li><a href="${ mainPath }/Admin/Cursos"><i class="fa fa-circle-o"></i>Cursos</a></li>
+		          <li><a href="${ mainPath }/Admin/Reporte"><i class="fa fa-circle-o"></i>Reporte</a></li>
 <!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li> -->
 <!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li> -->
 <!-- 		          <li><a href="${ contentPath }/AdminLTE/pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li> -->

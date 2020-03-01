@@ -4,12 +4,19 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <%
-	int idProfesor = 1;
+try {
+
 	ProfesorDAO dao = new ProfesorDAO();
+	int idProfesor = Integer.parseInt(session.getAttribute("idProfesor").toString());
 	Profesor profesor = dao.GetById(idProfesor);
 	
 	request.setAttribute("idProfesor", idProfesor);
-	request.setAttribute("profesor", profesor);
+	request.setAttribute("profesor", profesor);	
+} catch (Exception e) {
+	response.setHeader("Location", request.getContextPath() + "/Profesor/Index");
+	response.setStatus(302);	
+}
+
 %>
 
 <t:teacherpage title="Cursos por profesor">
@@ -38,11 +45,6 @@
 		    </div>
 		    <div class="box-body">
 		        <div class="col-md-12 box-header with-border">
-<!-- 			        <div style="margin-bottom: 20px;"> -->
-<!-- 			            <button type="button" id="btnAdd" class="btn btn-info"> -->
-<!-- 			                Nuevo curso -->
-<!-- 			            </button> -->
-<!-- 			        </div> -->
 		            <table class="table table-striped table-bordered dataTable" id="datatable" style="width: 100%">
 		                <thead>
 		                    <tr>
@@ -68,6 +70,9 @@
 		            </table>
 		        </div>
 		    </div>
+		    <div id="tableLoader" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+            </div>
 		</div>
 		
     </section>
@@ -99,8 +104,6 @@
 		var oTable = $('#datatable').dataTable();
 		
 		$.each(list, function () {
-// 			var idSemestre = this.idEstado;
-// 			var semestre = idSemestre == 1 ? "Primer semestre" : (idSemestre == 2 ? "Segundo semestre" : "");
 			
 			data = [];
 			data.push(this.materia.nombre);

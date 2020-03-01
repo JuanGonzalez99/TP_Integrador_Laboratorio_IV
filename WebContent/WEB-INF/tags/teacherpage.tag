@@ -14,6 +14,12 @@
 
 <t:genericpage title="${ title }">
     <jsp:attribute name="header">
+    
+    	<input type="hidden" id="tipoUsuario" value="${ tipoUsuario }" />
+    	
+    	<script>
+    		var tipoUsuario = document.getElementById('tipoUsuario').value;
+    	</script>	
 
 		<header class="main-header">
 		<!-- Logo -->

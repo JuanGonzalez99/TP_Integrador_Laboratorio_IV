@@ -7,10 +7,10 @@ public class CursoAlumno {
 	private Curso curso;
 	private int idAlumno;
 	private Alumno alumno;
-	private int parcial1;
-	private int parcial2;
-	private int recuperatorio1;
-	private int recuperatorio2;
+	private Integer parcial1;
+	private Integer parcial2;
+	private Integer recuperatorio1;
+	private Integer recuperatorio2;
 	private Integer idEstado;
 	private Estado estado;
 	private boolean deshabilitado;
@@ -46,28 +46,28 @@ public class CursoAlumno {
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
-	public int getParcial1() {
+	public Integer getParcial1() {
 		return parcial1;
 	}
-	public void setParcial1(int parcial1) {
+	public void setParcial1(Integer parcial1) {
 		this.parcial1 = parcial1;
 	}
-	public int getParcial2() {
+	public Integer getParcial2() {
 		return parcial2;
 	}
-	public void setParcial2(int parcial2) {
+	public void setParcial2(Integer parcial2) {
 		this.parcial2 = parcial2;
 	}
-	public int getRecuperatorio1() {
+	public Integer getRecuperatorio1() {
 		return recuperatorio1;
 	}
-	public void setRecuperatorio1(int recuperatorio1) {
+	public void setRecuperatorio1(Integer recuperatorio1) {
 		this.recuperatorio1 = recuperatorio1;
 	}
-	public int getRecuperatorio2() {
+	public Integer getRecuperatorio2() {
 		return recuperatorio2;
 	}
-	public void setRecuperatorio2(int recuperatorio2) {
+	public void setRecuperatorio2(Integer recuperatorio2) {
 		this.recuperatorio2 = recuperatorio2;
 	}
 	public Integer getIdEstado() {

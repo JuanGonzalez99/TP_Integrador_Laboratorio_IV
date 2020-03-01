@@ -10,22 +10,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dao.ProfesorDAO;
+import dao.UsuarioDAO;
+
 
 @SuppressWarnings("serial")
 @WebServlet("/deleteProfesor")
 public class deleteProfesor extends baseServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			ProfesorDAO dao = new ProfesorDAO();
 			int id = new Gson().fromJson(request.getReader(), int.class);
-			
-			setJson(dao.Delete(id));
+			ProfesorDAO dao = new ProfesorDAO();
+			UsuarioDAO daoUsu = new UsuarioDAO();
+			boolean resultProf = dao.Delete(id);
+			boolean resultUsu = daoUsu.DeleteByProfesorId(id);
+			setJson(resultProf && resultUsu);
 
 			setResponse(response);
 		} catch (Exception e) {
